@@ -1,10 +1,10 @@
-# [RasaJogja](http://ardi-syahputra-rasajogja.pbp.cs.ui.ac.id/) 😋🦑🦑🦑🦑🦑🦑🦑
+# [RasaJogja](http://ardi-syahputra-rasajogja.pbp.cs.ui.ac.id/) 😋🦑🍟🌭🍔
 
 ## Anggota Kelompok B05
-- [Clarissa Indriana Pramesti] (2306211660)
-- [Nelil Amaani] (2306227835)
+- [Clarissa Indriana Pramesti](https://github.com/clarissaindriana) (2306211660)
+- [Nelil Amaani](https://github.com/nelil21) (2306227835)
 - [Waode Inaya Diza Ma'inah](https://github.com/inayadiza) (2306245711)
-- [Naurah Iradya Kurniawan] (2306245900)
+- [Naurah Iradya Kurniawan]([Naurah15](https://github.com/Naurah15) (2306245900)
 - [Ardi Syahputra Amin](https://github.com/aminardisy) (2306222765)
 
 ## Deskripsi Singkat

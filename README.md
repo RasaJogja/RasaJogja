@@ -12,7 +12,8 @@ RasaJogja adalah sebuah aplikasi yang dirancang untuk menyediakan informasi leng
 
 Dengan RasaJogja, pengguna dapat dengan mudah mengakses informasi tentang hidangan, nama restoran, jenis makanan (Western, Indonesian, Chinese, dll.), lokasi restoran, harga rata-rata, rating restoran, dan variasi menu yang tersedia. Aplikasi ini tidak hanya menjadi panduan kuliner, tetapi juga jembatan yang menghubungkan pengguna dengan kekayaan budaya kuliner Jogjakarta.
 
-Kebermanfaatan : 
+Manfaat dari aplikasi ini : 
+
 1. Untuk Wisatawan
 RasaJogja memberikan kemudahan bagi wisatawan untuk menemukan dan menikmati kuliner khas Jogjakarta tanpa kesulitan mencari tempat makan yang sesuai. Informasi yang komprehensif dan penilaian dari pengguna lain membantu wisatawan membuat pilihan yang lebih tepat.
 

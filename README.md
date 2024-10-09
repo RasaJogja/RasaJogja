@@ -18,6 +18,7 @@ Aplikasi ini dilengkapi oleh berbagai fitur yang dapat memudahkan pengguna diant
 - Chat ke Toko Pengguna dapat berkomunikasi langsung dengan pemilik restoran untuk mendapatkan informasi lebih lanjut. Pemilik toko dapat memberikan jawaban secara personal dan responsif.
 - Forum : Pengguna dapat berpartisipasi dalam diskusi dan melihat daftar makanan dengan review tertinggi. Pemilik toko dapat membuat forum untuk pengguna.
 - Bookmark
+
 Manfaat dari aplikasi ini : 
 - 
 

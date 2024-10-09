@@ -5,7 +5,7 @@
 - [Nelil Amaani] (2306227835)
 - [Waode Inaya Diza Ma'inah](https://github.com/inayadiza) (2306245711)
 - [Naurah Iradya Kurniawan] (2306245900)
-- [Ardi Syahputra Amin](https://github.com/aminardisy)(2306222765)
+- [Ardi Syahputra Amin](https://github.com/aminardisy) (2306222765)
 
 ## Deskripsi Singkat
 RasaJogja adalah sebuah aplikasi yang dirancang untuk menyediakan informasi lengkap mengenai berbagai macam makanan khas dan populer di Kota Jogjakarta. Aplikasi ini bertujuan untuk memfasilitasi penduduk lokal dan wisatawan dalam menemukan tempat makan terbaik yang menawarkan beragam kuliner yang mereka inginkan. 

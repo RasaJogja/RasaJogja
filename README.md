@@ -1,9 +1,3 @@
-
-Memory updated
-Berikut adalah contoh konten untuk file README.md berdasarkan deskripsi yang kamu berikan:
-
-markdown
-Copy code
 # RasaJogja
 
 **Anggota Kelompok B05:**

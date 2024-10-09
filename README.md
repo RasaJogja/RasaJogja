@@ -86,7 +86,7 @@ Dengan fitur bookmark ini, RasaJogja memberikan pengalaman yang lebih personal d
 ## Dataset
 Kami menggunakan dataset dari [Kaggle - Places to Eat in the Jogja Region](https://www.kaggle.com/datasets/yudhaislamisulistya/places-to-eat-in-the-jogja-region) untuk informasi terkait lokasi restoran dan jenis kuliner di Jogjakarta.
 
-### Jenis Pengguna (_Role_)
+## Jenis Pengguna (_Role_)
 
 Pada aplikasi kami, terdapat dua jenis pengguna:
 

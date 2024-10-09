@@ -7,7 +7,7 @@
 - [Naurah Iradya Kurniawan] (2306245900)
 - [Ardi Syahputra Amin] (2306222765)
 
-## Deskripsi
+## Deskripsi Singkat
 RasaJogja adalah sebuah aplikasi yang dirancang untuk menyediakan informasi lengkap mengenai berbagai macam makanan khas dan populer di Kota Jogjakarta. Aplikasi ini bertujuan untuk memfasilitasi penduduk lokal dan wisatawan dalam menemukan tempat makan terbaik yang menawarkan beragam kuliner yang mereka inginkan. 
 
 Dengan RasaJogja, pengguna dapat dengan mudah mengakses informasi tentang hidangan, nama restoran, jenis makanan (Western, Indonesian, Chinese, dll.), lokasi restoran, harga rata-rata, rating restoran, dan variasi menu yang tersedia. Aplikasi ini tidak hanya menjadi panduan kuliner, tetapi juga jembatan yang menghubungkan pengguna dengan kekayaan budaya kuliner Jogjakarta.

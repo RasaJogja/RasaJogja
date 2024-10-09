@@ -1,9 +1,9 @@
-# [RasaJogja]
+# [RasaJogja](
 
 ## Anggota Kelompok B05
 - [Clarissa Indriana Pramesti] (2306211660)
 - [Nelil Amaani] (2306227835)
-- [Waode Inaya Diza Ma'inah] (2306245711)
+- [Waode Inaya Diza Ma'inah](https://github.com/inayadiza) (2306245711)
 - [Naurah Iradya Kurniawan] (2306245900)
 - [Ardi Syahputra Amin] (2306222765)
 

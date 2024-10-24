@@ -14,9 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# RasaJogja/urls.py
+
 from django.contrib import admin
 from django.urls import path
+from main import views  # Pastikan views diimpor dari aplikasi 'main'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('products/', views.product_list, name='product_list'),  # URL untuk daftar produk
+    path('', views.product_list),  # URL root akan mengarah ke product_list
 ]

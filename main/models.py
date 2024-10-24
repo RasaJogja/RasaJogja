@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.db import models
 
 class Product(models.Model):
@@ -9,3 +10,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.nama
+=======
+from django.db import models
+>>>>>>> 517af474d0c1d6a73765c208c7d2e05365d1affe

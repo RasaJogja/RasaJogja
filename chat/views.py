@@ -8,44 +8,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 # Create your views here.
-def show_main(request):
-    context = {
-        'npm' : '2306123456',
-        'name': 'Pak Bepe',
-        'class': 'PBP E'
-    }
-
-    return render(request, "main.html", context)
-
-def register(request):
-    form = UserCreationForm()
-
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your account has been successfully created!')
-            return redirect('chat:login')
-    context = {'form':form}
-    return render(request, 'register.html', context)
-
-def login_user(request):
-   if request.method == 'POST':
-      form = AuthenticationForm(data=request.POST)
-
-      if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('chat:show_main')
-
-   else:
-      form = AuthenticationForm(request)
-   context = {'form': form}
-   return render(request, 'login.html', context)
-
-def logout_user(request):
-    logout(request)
-    return redirect('chat:login')
 
 def create_chat(request):
     if request.method == 'POST':

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'katalog',
 ]
 
 MIDDLEWARE = [
@@ -55,11 +56,7 @@ ROOT_URLCONF = 'RasaJogja.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [BASE_DIR / 'templates'],
-=======
         'DIRS': [BASE_DIR / 'templates'], # Tambahkan konten baris ini
->>>>>>> 517af474d0c1d6a73765c208c7d2e05365d1affe
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

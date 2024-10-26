@@ -9,7 +9,7 @@ def product_list(request):
     
     # Memastikan file JSON ada
     if not os.path.exists(file_path):
-        return render(request, 'main/product_list.html', {'products': [], 'error': 'File JSON tidak ditemukan.'})
+        return render(request, 'product_list.html', {'products': [], 'error': 'File JSON tidak ditemukan.'})
     
     # Membaca data dari file JSON
     try:
@@ -17,7 +17,7 @@ def product_list(request):
             products = json.load(file)
     except json.JSONDecodeError:
         # Menangani kesalahan jika format JSON tidak valid
-        return render(request, 'main/product_list.html', {'products': [], 'error': 'File JSON tidak valid.'})
+        return render(request, 'product_list.html', {'products': [], 'error': 'File JSON tidak valid.'})
     
     # Render ke template 'product_list.html' di dalam folder main/templates
     return render(request, 'product_list.html', {'products': products})

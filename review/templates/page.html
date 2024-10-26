@@ -1,0 +1,60 @@
+{% extends 'base.html' %} 
+
+{% block meta %}
+<title>Review Produk</title>
+<style>
+    body, h1, h2, p {
+        color: #AB886D; /* Ganti dengan warna coklat yang diinginkan */
+    }
+    .btn-add-review {
+        background-color: #AB886D; /* Warna coklat untuk tombol */
+        color: white; /* Warna teks tombol */
+    }
+    .btn-add-review:hover {
+        background-color: #493628; /* Warna saat hover */
+    }
+    .divider {
+        margin: 1.5rem 0; /* Jarak atas dan bawah untuk divider */
+        height: 2px; /* Tinggi divider */
+        background-color: #AB886D; /* Warna coklat untuk divider */
+        border-radius: 5px; /* Sudut membulat untuk divider */
+        width: 50%; /* Lebar divider */
+        margin-left: auto; /* Memusatkan divider */
+        margin-right: auto; /* Memusatkan divider */
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+{% include 'navbar.html' %}  {# Sesuaikan dengan navbar utama yang sudah ada #}
+
+<div class="py-20 bg-white">
+    <h1 class="text-4xl font-bold text-center mb-10">{{ product.nama }}'s Review</h1> 
+
+    <div class="divider"></div>  {# Garis pemisah di bawah judul #}
+
+    <!-- Container untuk review -->
+    <div class="max-w-3xl mx-auto bg-white shadow-lg p-6 rounded-lg">
+        {% for review in reviews %}
+            <div class="border-b border-gray-300 py-6 flex space-x-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-lg font-semibold">{{ review.user.username }}</h2> 
+                        <span class="text-sm text-gray-500">{{ review.time|date:"F j, Y, g:i a" }}</span>
+                    </div>
+                    <p class="mt-2 text-gray-700">{{ review.review_text }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-gray-600 text-center">Belum ada ulasan untuk produk ini.</p>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-8">  {# Pindahkan tombol ke sini #}
+        <a href="{% url 'review:add_review' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
+            Add Review
+        </a>
+    </div>
+</div>
+
+{% endblock content %}

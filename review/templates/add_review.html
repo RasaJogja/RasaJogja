@@ -1,0 +1,97 @@
+{% extends 'base.html' %} 
+
+{% load static %}  <!-- Pastikan tag static di-load -->
+
+{% block meta %}
+<title>Tambah Review</title>
+<style>
+    body {
+        background-color: white; /* Latar belakang halaman */
+        color: #343a40; /* Warna teks umum */
+    }
+    h2 {
+        color: #AB886D; /* Warna coklat untuk teks judul */
+        text-align: center; /* Memusatkan teks judul */
+        margin-bottom: 1rem; /* Memberikan jarak bawah */
+        font-size: 2rem; /* Ukuran font judul */
+    }
+    .review-textarea {
+        background-color: #AB886D; /* Warna coklat untuk latar belakang textarea */
+        color: white; /* Warna teks di dalam textarea */
+        border: none; /* Menghilangkan border default */
+        border-radius: 5px; /* Memberikan sudut yang membulat */
+        padding: 10px; /* Menambahkan padding */
+        width: 100%; /* Lebar penuh */
+        resize: none; /* Menghilangkan opsi resize */
+        font-size: 1rem; /* Ukuran font di dalam textarea */
+    }
+    .btn-back, .btn-submit {
+        background-color: #AB886D; /* Warna coklat untuk tombol */
+        color: white; /* Warna teks tombol */
+        padding: 10px 15px; /* Padding tombol */
+        border: none; /* Menghilangkan border */
+        border-radius: 5px; /* Sudut membulat */
+        text-decoration: none; /* Menghilangkan garis bawah */
+        display: inline-block; /* Membuat tombol berperilaku seperti blok */
+        transition: background-color 0.3s; /* Transisi warna latar belakang */
+        font-size: 1rem; /* Ukuran font tombol */
+    }
+    .btn-back:hover, .btn-submit:hover {
+        background-color: #493628; /* Warna saat hover */
+    }
+    .btn-submit {
+        margin-left: 10px; /* Margin kiri untuk jarak antara tombol */
+    }
+    .card-container {
+        display: flex;
+        justify-content: center; /* Memusatkan card secara horizontal */
+        align-items: center; /* Memusatkan card secara vertikal */
+        min-height: 80vh; /* Tinggi minimal untuk memusatkan card */
+        margin-top: 50px; /* Menambahkan margin atas untuk jarak dari navbar */
+    }
+    .card {
+        background-color: white; /* Warna latar belakang card */
+        border-radius: 10px; /* Sudut membulat untuk card */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Bayangan untuk card */
+        padding: 2rem; /* Padding untuk card */
+        width: 100%; /* Lebar penuh */
+        max-width: 600px; /* Lebar maksimal card */
+        margin: 20px; /* Margin di sekitar card */
+    }
+    .text-center {
+        text-align: center; /* Mengatur teks menjadi rata tengah */
+    }
+    .divider {
+        margin: 1.5rem 0; /* Jarak atas dan bawah untuk divider */
+        height: 2px; /* Tinggi divider */
+        background-color: #AB886D; /* Warna coklat untuk divider */
+        border-radius: 5px; /* Sudut membulat untuk divider */
+        width: 50%; /* Lebar divider */
+        margin-left: auto; /* Memusatkan divider */
+        margin-right: auto; /* Memusatkan divider */
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="card-container">  {# Container untuk memusatkan card #}
+    <div class="card">
+        <h2 class="text-2xl font-bold">Review {{ product.nama }}</h2>
+        <div class="divider"></div> {# Divider untuk estetika #}
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <textarea class="review-textarea" name="review_text" rows="5" placeholder="Silahkan masukkan review anda terkait produk kami di sini..." required></textarea>
+
+            <div class="text-center mt-4">
+                <input type="submit" value="Submit" class="btn-submit">
+                <a href="{% url 'review:show_review' product.pk %}" class="btn-back">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

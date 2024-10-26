@@ -1,0 +1,1160 @@
+[
+    {
+        "model": "katalog.product",
+        "pk": 1,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Ice Cream",
+            "harga": 22000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 2,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Classic Pancakes & Waffle Sugar/Mapple Butter",
+            "harga": 40000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 3,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Classic Pancakes & Waffle Beef and Egg Scramble",
+            "harga": 52000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 4,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Fluffy Japanese Pancake with Milk Sauce",
+            "harga": 35000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 5,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Butter and Sugar Crepes",
+            "harga": 32000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 6,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Mapple and Butter Crepes",
+            "harga": 37000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 7,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Milk Pie",
+            "harga": 24000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 8,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Smores",
+            "harga": 24000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 9,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Red Velvet Cookies",
+            "harga": 17000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 10,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Choco Seasalt Cookies",
+            "harga": 17000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 11,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Fufetti Cookies",
+            "harga": 17000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 12,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Oreo Cookies",
+            "harga": 17000,
+            "nama_restoran": "Milk by Arthemy",
+            "lokasi": "Jl. Kranggan No.58, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 13,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Quiche",
+            "harga": 30000,
+            "nama_restoran": "Desia's Kitchen",
+            "lokasi": "Jl. Tegal Panggung No.41, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 14,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Lasagna",
+            "harga": 25000,
+            "nama_restoran": "Desia's Kitchen",
+            "lokasi": "Jl. Tegal Panggung No.41, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 15,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Mac and Cheese",
+            "harga": 20000,
+            "nama_restoran": "Desia's Kitchen",
+            "lokasi": "Jl. Tegal Panggung No.41, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 16,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Scone",
+            "harga": 30000,
+            "nama_restoran": "Desia's Kitchen",
+            "lokasi": "Jl. Tegal Panggung No.41, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 17,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Premium Cheese",
+            "harga": 70000,
+            "nama_restoran": "Desia's Kitchen",
+            "lokasi": "Jl. Tegal Panggung No.41, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 18,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Creamy Buko Pandan",
+            "harga": 45000,
+            "nama_restoran": "Butter Hour",
+            "lokasi": "Jl. Bumijo No.9, Bumijo, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 19,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Matilda Chocolate Cake",
+            "harga": 55000,
+            "nama_restoran": "Butter Hour",
+            "lokasi": "Jl. Bumijo No.9, Bumijo, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 20,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Slice Cake",
+            "harga": 28500,
+            "nama_restoran": "Cheesecake Expert",
+            "lokasi": "Jl. Bumijo No.9, Bumijo, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 21,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Baked Whole Cake",
+            "harga": 320000,
+            "nama_restoran": "Cheesecake Expert",
+            "lokasi": "Jl. STM Pembangunan No.4, Santren, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 22,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "No Baked Whole Cake",
+            "harga": 305000,
+            "nama_restoran": "Cheesecake Expert",
+            "lokasi": "Jl. STM Pembangunan No.4, Santren, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 23,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Kitti Higgly Panna Cotta",
+            "harga": 36000,
+            "nama_restoran": "Dear Sweet Cafe",
+            "lokasi": "Jl. Kaliurang Nomor 12 Caturtunggal, Depok, Sleman, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 24,
+        "fields": {
+            "kategori": "Makanan Penutup",
+            "nama": "Japanese Egg Pudding",
+            "harga": 22000,
+            "nama_restoran": "Dear Sweet Cafe",
+            "lokasi": "Jl. Kaliurang Nomor 12 Caturtunggal, Depok, Sleman, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 25,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Yangko",
+            "harga": 15000,
+            "nama_restoran": "Yangkok Pak Prapto",
+            "lokasi": "Jl. Pramuka No.82, Giwangan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55163"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 26,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Bakpia Pathok Original",
+            "harga": 37500,
+            "nama_restoran": "Bakpia Pathok 25",
+            "lokasi": "Jl. Karel Sasuit Tubun No.12-14, Ngampilan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55261"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 27,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Bakpia Pathok Premium",
+            "harga": 50000,
+            "nama_restoran": "Bakpia Pathok 25",
+            "lokasi": "Jl. Karel Sasuit Tubun No.12-14, Ngampilan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55261"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 28,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Keripik Belut",
+            "harga": 35000,
+            "nama_restoran": "Pusat Kuliner Belut Godean",
+            "lokasi": "Pasar Kuliner Belut Godean, Jl. Ngapak - Kentheng No.km.10, Sidoagung, Kec. Godean, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 29,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Peyek Tumpuk (500 gram)",
+            "harga": 30000,
+            "nama_restoran": "Geplak Mbok Tumpuk",
+            "lokasi": "Betis, Jalan KH.A Jl. Kh Wahid Hasyim No.104, Taskombang, Palbapang, Kec. Bantul, Kabupaten Bantul, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 30,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Banjar dan Ukel",
+            "harga": 30000,
+            "nama_restoran": "Pasar Legi Kotagede",
+            "lokasi": "Jl. Mentaok Raya, Purbayan, Kec. Kotagede, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 31,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Jadah Tempe",
+            "harga": 22500,
+            "nama_restoran": "Jadah Tempe Mbah Carik",
+            "lokasi": "Kaliurang St No.Km 12, RW.5, Legolan, Umbulmartani, Ngemplak, Sleman Regency, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 32,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Geblek",
+            "harga": 5000,
+            "nama_restoran": "Geblek Pari",
+            "lokasi": "Pronosutan, Kembang, Nanggulan, Kulon Progo Regency, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 33,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Walang Goreng",
+            "harga": 30000,
+            "nama_restoran": "Penjual pinggir jalan",
+            "lokasi": "Kabupaten Gunung Kidul"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 34,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Oseng Mercon",
+            "harga": 25000,
+            "nama_restoran": "Oseng Mercon Bu Narti",
+            "lokasi": "Jl. KH. Ahmad Dahlan No.107, Notoprajan, Ngampilan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 35,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Geplak",
+            "harga": 25000,
+            "nama_restoran": "Geplak Mbok Tumpuk",
+            "lokasi": "Betis, Jalan KH.A Jl. Kh Wahid Hasyim No.104, Taskombang, Palbapang, Kec. Bantul, Kabupaten Bantul, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 36,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Tahu Susu Bakso",
+            "harga": 40000,
+            "nama_restoran": "Tasuba Tahu Susu Bakso Aneka Rasa",
+            "lokasi": "Jl. Laksda Adisucipto No.Km. 7, RW.6, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 37,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Entung (1 kg)",
+            "harga": 100000,
+            "nama_restoran": "Penjual pinggir jalan",
+            "lokasi": "Kabupaten Gunung Kidul"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 38,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Gathot",
+            "harga": 19000,
+            "nama_restoran": "Gathot Thiwul Yu Tum",
+            "lokasi": "Jl. Pramuka No.36, Pandansari, Wonosari, Kec. Wonosari, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 39,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Thiwul",
+            "harga": 18000,
+            "nama_restoran": "Gathot Thiwul Yu Tum",
+            "lokasi": "Jl. Pramuka No.36, Pandansari, Wonosari, Kec. Wonosari, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 40,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Grit Jagung",
+            "harga": 17000,
+            "nama_restoran": "Gathot Thiwul Yu Tum",
+            "lokasi": "Jl. Pramuka No.36, Pandansari, Wonosari, Kec. Wonosari, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 41,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Lumpia Special",
+            "harga": 6000,
+            "nama_restoran": "Lumpia Samijaya",
+            "lokasi": "Jl. Malioboro, Suryatmajan, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 42,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Lumpia Ayam",
+            "harga": 5000,
+            "nama_restoran": "Lumpia Samijaya",
+            "lokasi": "Jl. Malioboro, Suryatmajan, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 43,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Cilok",
+            "harga": 50000,
+            "nama_restoran": "Cilok Gajahan Seturan",
+            "lokasi": "Jl. Seturan Raya No.173-168, Kledokan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 44,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Jenang",
+            "harga": 5000,
+            "nama_restoran": "Jenang Bu Gesti",
+            "lokasi": "Jl. Hayam Wuruk, Tegal Panggung, Kec. Danurejan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 45,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Rujak Es Krim",
+            "harga": 10000,
+            "nama_restoran": "Rujak Es Krim Pak Nardi Pakualaman",
+            "lokasi": "Jl. Harjowinatan, RT.44/RW.10, Purwokinanti, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 46,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Rujak",
+            "harga": 10000,
+            "nama_restoran": "Rujak Es Krim Pak Nardi Pakualaman",
+            "lokasi": "Jl. Harjowinatan, RT.44/RW.10, Purwokinanti, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 47,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Es Krim",
+            "harga": 10000,
+            "nama_restoran": "Rujak Es Krim Pak Nardi Pakualaman",
+            "lokasi": "Jl. Harjowinatan, RT.44/RW.10, Purwokinanti, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 48,
+        "fields": {
+            "kategori": "Camilan",
+            "nama": "Sate Lilit",
+            "harga": 12000,
+            "nama_restoran": "The House of Raminten",
+            "lokasi": "Jl. Faridan M Noto No.7, Kotabaru, Kota Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 49,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Ayam Goreng",
+            "harga": 28000,
+            "nama_restoran": "Warung Watoe Gadjah",
+            "lokasi": "79QW+R5F, Plumbon, Sardonoharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 50,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Sego Penggel (Nasi Sayur Lodeh)",
+            "harga": 15000,
+            "nama_restoran": "Warung Watoe Gadjah",
+            "lokasi": "79QW+R5F, Plumbon, Sardonoharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 51,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Goreng Ayam",
+            "harga": 20000,
+            "nama_restoran": "Warung Watoe Gadjah",
+            "lokasi": "79QW+R5F, Plumbon, Sardonoharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 52,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Goreng Babat",
+            "harga": 27000,
+            "nama_restoran": "Warung Watoe Gadjah",
+            "lokasi": "79QW+R5F, Plumbon, Sardonoharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 53,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Sop Campur",
+            "harga": 9500,
+            "nama_restoran": "Sop Ayam Klaten",
+            "lokasi": "Jl. DI Panjaitan 121-259, Mantrijeron, Kec. Mantrijeron, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 54,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Soto Daging Sapi",
+            "harga": 14000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 55,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Soto Asli Ayam Kampung",
+            "harga": 12000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 56,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Gulai Ayam Kampung Porsi Biasa",
+            "harga": 17000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 57,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Tongseng Ayam Kampung Porsi Biasa",
+            "harga": 17000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 58,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Paket Nasi Rica-rica Kepala Asli Ayam Kampung",
+            "harga": 14000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 59,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Capcay Kuah",
+            "harga": 20000,
+            "nama_restoran": "Soto Ayam Kampung dan Soto Daging Sapi Pak Ben",
+            "lokasi": "Tuntungan UH 3/1087 Tahunan, Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 60,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Mie Kulit Manja",
+            "harga": 18000,
+            "nama_restoran": "Kedai Mie Nyinyir",
+            "lokasi": "Jl. Sorogenen No.303, Sorosutan, Kec. Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 61,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Mie Julit Sinis",
+            "harga": 18000,
+            "nama_restoran": "Kedai Mie Nyinyir",
+            "lokasi": "Jl. Sorogenen No.303, Sorosutan, Kec. Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 62,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Mie Nyinyir Manja",
+            "harga": 18000,
+            "nama_restoran": "Kedai Mie Nyinyir",
+            "lokasi": "Jl. Sorogenen No.303, Sorosutan, Kec. Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 63,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Mie Nyinyir Sinis",
+            "harga": 18000,
+            "nama_restoran": "Kedai Mie Nyinyir",
+            "lokasi": "Jl. Sorogenen No.303, Sorosutan, Kec. Umbulharjo, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 64,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Baso Sapi",
+            "harga": 16000,
+            "nama_restoran": "Kantin Mama Mirza",
+            "lokasi": "Jl. Batikan No.mor 8, Tahunan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 65,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Rice Bowl Nugget",
+            "harga": 18000,
+            "nama_restoran": "Kantin Mama Mirza",
+            "lokasi": "Jl. Batikan No.mor 8, Tahunan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 66,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Sop Bakso",
+            "harga": 16000,
+            "nama_restoran": "Kantin Mama Mirza",
+            "lokasi": "Jl. Batikan No.mor 8, Tahunan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 67,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Seblak",
+            "harga": 16000,
+            "nama_restoran": "Kantin Mama Mirza",
+            "lokasi": "Jl. Batikan No.mor 8, Tahunan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 68,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Lotek",
+            "harga": 29000,
+            "nama_restoran": "Lotek Gado-Gado Bu Ning",
+            "lokasi": "Jl Tamansiswa, Yogyakarta, DI Yogyakarta, Indonesia"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 69,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Kupat Tahu",
+            "harga": 25000,
+            "nama_restoran": "Lotek Gado-Gado Bu Ning",
+            "lokasi": "Jl Tamansiswa, Yogyakarta, DI Yogyakarta, Indonesia"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 70,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Ketoprak",
+            "harga": 20000,
+            "nama_restoran": "Lotek Gado-Gado Bu Ning",
+            "lokasi": "Jl Tamansiswa, Yogyakarta, DI Yogyakarta, Indonesia"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 71,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Bakmi Goreng",
+            "harga": 46200,
+            "nama_restoran": "Bakmi Nikmat Rasa",
+            "lokasi": "Jl. Sorangan No 7, Kasihan, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 72,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Bihun Kuah",
+            "harga": 46200,
+            "nama_restoran": "Bakmi Nikmat Rasa",
+            "lokasi": "Jl. Sorangan No 7, Kasihan, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 73,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Capcay Kuah",
+            "harga": 59400,
+            "nama_restoran": "Bakmi Nikmat Rasa",
+            "lokasi": "Jl. Sorangan No 7, Kasihan, Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 74,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Gudeg Telur Paha Atas Brutu Ayam",
+            "harga": 58000,
+            "nama_restoran": "Gudeg Yu Djum",
+            "lokasi": "Karangasem mBarek CTII/22 Jl. Kaliurang km.4,5 Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 75,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Nasi Tenong",
+            "harga": 130000,
+            "nama_restoran": "House Of Raminten",
+            "lokasi": "Jl Faridan M Noto No.7, Kotabaru, Kec. Gondokusuman, Kota Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 76,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Songgo Langit",
+            "harga": 110000,
+            "nama_restoran": "House Of Raminten",
+            "lokasi": "Jl Faridan M Noto No.7, Kotabaru, Kec. Gondokusuman, Kota Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 77,
+        "fields": {
+            "kategori": "Makanan",
+            "nama": "Sup Bola-Bola",
+            "harga": 20000,
+            "nama_restoran": "Bale Ayu Resto Imogiri",
+            "lokasi": "Jl. Imogiri Timur, Bantul, Yogyakarta 55163, Indonesia"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 78,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Lavender",
+            "harga": 25000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 79,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Butterfly Pea",
+            "harga": 20000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 80,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Red Roselle",
+            "harga": 20000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 81,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Chrysanthemum",
+            "harga": 25000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 82,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Chamomile",
+            "harga": 25000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 83,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Lotus",
+            "harga": 18000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 84,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Tibetan Chrysant",
+            "harga": 22000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 85,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Osmanthus",
+            "harga": 20000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 86,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Globe Amaranth",
+            "harga": 15000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 87,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Black Tea",
+            "harga": 15000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 88,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Oolong Tea",
+            "harga": 20000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 89,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Earl Grey",
+            "harga": 18000,
+            "nama_restoran": "Vegan Cafe Black Forest",
+            "lokasi": "Jl. Parangtritis No.87, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 90,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Ginger Beer",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 91,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Pea Lemongrass",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 92,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Berry Lemonade",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 93,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Markisa",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 94,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Asam Jawa",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 95,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Pandan Wangi",
+            "harga": 100000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 96,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Belibis",
+            "harga": 100000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 97,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Mango Mule",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 98,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Cucumber Crush",
+            "harga": 40000,
+            "nama_restoran": "A&M Co. Yogyakarta",
+            "lokasi": "Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 99,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Jamu",
+            "harga": 10000,
+            "nama_restoran": "Jamu Ginggang",
+            "lokasi": "Jl. Masjid No.32, RT.034/RW.09, Kauman, Gunungketur, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 100,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Jamu Telor",
+            "harga": 15000,
+            "nama_restoran": "Jamu Ginggang",
+            "lokasi": "Jl. Masjid No.32, RT.034/RW.09, Kauman, Gunungketur, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 101,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Es Beras Kencur",
+            "harga": 10000,
+            "nama_restoran": "Jamu Ginggang",
+            "lokasi": "Jl. Masjid No.32, RT.034/RW.09, Kauman, Gunungketur, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 102,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Es Temulawak",
+            "harga": 10000,
+            "nama_restoran": "Jamu Ginggang",
+            "lokasi": "Jl. Masjid No.32, RT.034/RW.09, Kauman, Gunungketur, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 103,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Wedang Jahe Gepuk",
+            "harga": 6500,
+            "nama_restoran": "Kopi Klotok",
+            "lokasi": "Jalan Kaliurang No.KM.16, Area Sawah, Pakembinangun, Kec. Pakem, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 104,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Kopi Klotok",
+            "harga": 5000,
+            "nama_restoran": "Kopi Klotok",
+            "lokasi": "Jalan Kaliurang No.KM.16, Area Sawah, Pakembinangun, Kec. Pakem, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    },
+    {
+        "model": "katalog.product",
+        "pk": 105,
+        "fields": {
+            "kategori": "Minuman",
+            "nama": "Teh Tubruk Gulo Jawa",
+            "harga": 6500,
+            "nama_restoran": "Kopi Klotok",
+            "lokasi": "Jalan Kaliurang No.KM.16, Area Sawah, Pakembinangun, Kec. Pakem, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
+        }
+    }
+]
+
+
+

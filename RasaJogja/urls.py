@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path('katalog/', include('katalog.urls')),
     path('chat/', include('chat.urls')),
+    path('bookmark/', include('bookmark.urls'))
 ]

@@ -109,7 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# Mengubah zona waktu ke Jakarta
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 

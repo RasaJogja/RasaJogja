@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% include 'navbar.html' %}
 <div class="min-h-screen flex items-center justify-center">
     <!-- Display form validation errors, if any -->
     <form method="POST" class="w-full max-w-sm">
@@ -14,7 +14,7 @@
                 {{ form.users }}  <!-- User form field -->
             </div>
 
-            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Chat</button>
+            <button type="submit" class="w-full text-white bg-[#AB886D] hover:bg-[#D6C0B3] focus:ring-4 focus:outline-none focus:ring-[#AB886D] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#AB886D] dark:hover:bg-[#D6C0B3] dark:focus:ring-[#AB886D]">Create Chat</button>
         </div>
          
     </form>

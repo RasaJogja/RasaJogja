@@ -1,13 +1,33 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block meta %} {% endblock meta %}
-  </head>
+<head>
+    {% block meta %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    <title>{% block title %}Mental Health Tracker{% endblock title %}</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <body>
-    {% block content %} {% endblock content %}
-  </body>
+    <!-- Tambahkan konfigurasi tambahan jika diperlukan -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Contoh warna tambahan atau kustom
+              primary: '#4e342e', // Coklat
+              secondary: '#f7efe4', // Cream
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-primary text-secondary">
+    {% block content %}
+    <!-- Konten spesifik untuk halaman akan diisi di sini -->
+    {% endblock content %}
+</body>
 </html>

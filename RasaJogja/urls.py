@@ -19,10 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('katalog.urls')),
-    path('', include('bookmark.urls')),
     path('', include('main.urls')),
     path('katalog/', include('katalog.urls')),
     path('chat/', include('chat.urls')),
-    path('bookmark/', include('bookmark.urls'))
+    path('bookmark/', include('bookmark.urls')),
+    path('forum/', include('forum.urls')),
 ]

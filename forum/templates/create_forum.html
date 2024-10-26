@@ -1,0 +1,14 @@
+<!-- create_forum.html -->
+{% extends 'base.html' %}
+
+{% block title %}Create Forum{% endblock %}
+
+{% block content %}
+    <h2>Create New Forum</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Forum</button>
+    </form>
+    <a href="{% url 'forum:forum_list' %}">Back to Forum List</a>
+{% endblock %}

@@ -1,83 +1,35 @@
 
-<nav class="bg-[#543310] shadow-lg fixed top-0 left-0 z-40 w-screen">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
-          <h1 class="text-2xl font-bold text-center text-white">Rasa Jogja</h1>
-        </div>
-        <div class="hidden md:flex items-center">
-          {% if user.is_authenticated %}
-            <span class="text-gray-300 mr-4">Welcome, {{ user.username }}</span>
-            <a href="{% url 'main:forum' %}" class="text-center bg-[#AF8F6F] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
-              Forum
-            </a>
-            <a href="{% url 'main:chat' %}" class="text-center bg-[#AF8F6F] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
-              Chat
-            </a>
-            <a href="{% url 'main:katalog' %}" class="text-center bg-[#AF8F6F] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
-              Katalog
-            </a>
-            <a href="{% url 'main:bookmark' %}" class="text-center bg-[#AF8F6F] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
-              Bookmark
-            </a>
-            <a href="{% url 'main:logout' %}" class="text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-              Logout
-            </a>
-          {% else %}
-            <a href="{% url 'main:login' %}" class="text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
-              Login
-            </a>
-            <a href="{% url 'main:register' %}" class="text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-              Register
-            </a>
-          {% endif %}
-        </div>
-        <div class="md:hidden flex items-center">
-          <button class="mobile-menu-button">
-            <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+{% load static %}
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="{% static 'images/logo_borobudur.png' %}" class="h-8" alt="Flowbite Logo">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">RasaJogja</span>
+    </a>
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <a href="{% url 'main:logout' %}">
+            <button type="button" class="text-white bg-[#AB886D] hover:bg-[#493628] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
+        </a>
     </div>
-    <!-- Mobile menu -->
-    <div class="mobile-menu hidden md:hidden px-4 w-full md:max-w-full">
-      <div class="pt-2 pb-3 space-y-1 mx-auto">
-        {% if user.is_authenticated %}
-          <span class="block text-gray-300 px-3 py-2">Welcome, {{ user.username }}</span>
-          <a href="{% url 'main:forum' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Forum
-          </a>
-          <a href="{% url 'main:chat' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Chat
-          </a>
-          <a href="{% url 'main:katalog' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Katalog
-          </a>
-          <a href="{% url 'main:bookmark' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Bookmark
-          </a>
-          <a href="{% url 'main:logout' %}" class="block text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Logout
-          </a>
-        {% else %}
-          <a href="{% url 'main:login' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mb-2">
-            Login
-          </a>
-          <a href="{% url 'main:register' %}" class="block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Register
-          </a>
-        {% endif %}
-      </div>
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="{% url 'main:show_mainpage' %}" class="block py-2 px-3 text-white bg-[#AB886D] rounded md:bg-transparent md:text-[#AB886D] md:p-0 md:dark:text-[#AB886D]" aria-current="page">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'katalog:main_view' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#AB886D] md:p-0 md:dark:hover:text-[#AB886D] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Kuliner</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#AB886D] md:p-0 md:dark:hover:text-[#AB886D] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Rekomendasi</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#AB886D] md:p-0 md:dark:hover:text-[#AB886D] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Bookmark</a>
+        </li>
+        <li>
+            <a href="{% url 'chat:create_chat' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#AB886D] md:p-0 md:dark:hover:text-[#AB886D] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Chat Penjual</a>
+          </li>
+      </ul>
     </div>
-    <script>
-      const btn = document.querySelector("button.mobile-menu-button");
-      const menu = document.querySelector(".mobile-menu");
-  
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-    </script>
-  </nav>
+    </div>
+</nav>
   

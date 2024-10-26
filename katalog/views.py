@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render
 from django.conf import settings
+from .models import Product
 import os
 
 def product_list(request):
@@ -21,3 +22,7 @@ def product_list(request):
     
     # Render ke template 'product_list.html' di dalam folder main/templates
     return render(request, 'product_list.html', {'products': products})
+
+def main_view(request):
+    products = Product.objects.all()
+    return render(request, 'main.html', {'products': products})

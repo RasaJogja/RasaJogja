@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>PAGE LOGIN OR REGISTER</h1>
+
+<a href="{% url 'main:login' %}">
+    <button>Login</button>
+</a>
+
+<a href="{% url 'main:register' %}">
+    <button>Register</button>
+</a>
+
+{% endblock content %}

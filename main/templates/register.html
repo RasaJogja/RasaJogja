@@ -3,26 +3,80 @@
 
 <title>Register</title>
 
-<div class="login">
-  <h1>Register</h1>
+<!-- Gaya gradasi untuk latar belakang dan styling tambahan -->
+<style>
+  .gradient-background {
+    background: linear-gradient(to top left, #8b4513, #d2b48c, #ffffff); /* Coklat tua, coklat muda, dan putih */
+  }
+  .register-header {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    color: #8b4513; /* Coklat tua */
+  }
+  .btn-submit {
+    background-color: #8b4513; /* Coklat tua */
+    color: white;
+  }
+  .btn-submit:hover {
+    background-color: #d2b48c; /* Coklat muda */
+  }
+  .input-field {
+    background-color: #e6f0ff; /* Warna biru muda untuk background */
+    border: 2px solid #8b4513; /* Coklat tua untuk border */
+    width: 100%; /* Menyesuaikan lebar input */
+    padding: 10px; /* Menambah padding untuk input */
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar total */
+  }
+  .input-field:focus {
+    border-color: #d2b48c; /* Coklat muda saat fokus */
+  }
+  .field-note {
+    font-size: 0.8em; /* Ukuran font lebih kecil untuk catatan */
+    color: #7a7a7a; /* Warna abu-abu */
+  }
+  .error-message {
+    font-size: 0.8em; /* Ukuran font lebih kecil untuk pesan kesalahan */
+    color: red; /* Warna merah untuk pesan kesalahan */
+  }
+</style>
 
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input type="submit" name="submit" value="Daftar" /></td>
-      </tr>
-    </table>
-  </form>
+<div class="flex items-center justify-center h-screen gradient-background">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h1 class="text-2xl font-bold text-center register-header uppercase">REGISTER</h1>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mt-4">
+        {% for field in form %}
+          <div class="mb-4">
+            <label for="{{ field.id_for_label }}" class="block text-brown-600">{{ field.label }}:</label>  <!-- Tambahkan ":" di sini -->
+            <input type="text" name="{{ field.name }}" id="{{ field.id_for_label }}" required class="mt-1 block w-full border border-brown-800 rounded-md p-2 input-field" value="{{ field.value|default:'' }}" {% if field.is_required %}required{% endif %} />
+            {% if field.errors %}
+              <span class="error-message">{{ field.errors }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+        
+        <!-- Pesan ketentuan -->
+        <p class="field-note">* Ketentuan: Pastikan semua field diisi dengan benar.</p>
+      </div>
+
+      <div class="mt-6 text-center">
+        <input type="submit" name="submit" class="btn btn-submit py-2 px-4 rounded hover:bg-brown-600 transition" value="Register" />
+      </div>
+
+      {% if messages %}
+      <ul class="mt-4 text-red-600">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      
+      <p class="mt-4 text-center text-brown-800">Already have an account?</p>
+      <a href="{% url 'main:login' %}" class="block text-center text-brown-600 hover:text-brown-800 font-semibold">Login Now</a>
+    </form>
+  </div>
 </div>
+
 {% endblock content %}

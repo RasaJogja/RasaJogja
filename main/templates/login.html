@@ -3,27 +3,76 @@
 
 <title>Login</title>
 
-<div class="login">
-  <h1>Login</h1>
+<!-- Gaya gradasi untuk latar belakang dan styling tambahan -->
+<style>
+  .gradient-background {
+    background: linear-gradient(to bottom right, #8b4513, #d2b48c, #ffffff, #fffacd); /* Coklat tua, coklat muda, putih, dan hint kuning */
+  }
+  .login-header {
+    font-family: 'Roboto', sans-serif; /* Ganti dengan font favorit Anda, pastikan di-link dari Google Fonts jika eksternal */
+    letter-spacing: 2px;
+    color: #8b4513; /* Coklat tua */
+  }
+  .btn-login {
+    background-color: #8b4513; /* Coklat tua */
+    color: white;
+  }
+  .btn-login:hover {
+    background-color: #d2b48c; /* Coklat muda */
+  }
+  .input-field {
+    background-color: #e6f0ff; /* Warna biru muda untuk background */
+    border: 2px solid #8b4513; /* Coklat tua untuk border */
+    width: 100%; /* Menyesuaikan lebar input */
+    padding: 10px; /* Menambah padding untuk input */
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar total */
+  }
+  .input-field:focus {
+    border-color: #d2b48c; /* Coklat muda saat fokus */
+  }
+</style>
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
+<div class="flex items-center justify-center h-screen gradient-background">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h1 class="text-2xl font-bold text-center login-header uppercase">LOGIN</h1>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+    <form method="POST" action="">
+      {% csrf_token %}
+
+      <div class="mt-4">
+        <label for="user_type" class="block text-brown-600">I am a:</label>
+        <select id="user_type" name="user_type" class="mt-1 block w-full border border-brown-800 rounded-md p-2 input-field">
+          <option value="user">User</option>
+          <option value="seller">Seller</option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <label for="username" class="block text-brown-600">Username:</label>
+        <input type="text" name="username" id="username" required class="mt-1 block w-full border border-brown-800 rounded-md p-2 input-field" />
+      </div>
+
+      <div class="mt-4">
+        <label for="password" class="block text-brown-600">Password:</label>
+        <input type="password" name="password" id="password" required class="mt-1 block w-full border border-brown-800 rounded-md p-2 input-field" />
+      </div>
+
+      <div class="mt-6 text-center">
+        <button class="btn btn-login py-2 px-4 rounded hover:bg-brown-600 transition" type="submit">Login</button>
+      </div>
+
+      {% if messages %}
+      <ul class="mt-4 text-red-600">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <p class="mt-4 text-center text-brown-800">Don't have an account yet?</p>
+      <a href="{% url 'main:register' %}" class="block text-center text-brown-600 hover:text-brown-800 font-semibold">Register Now</a>
+    </form>
+  </div>
 </div>
+
 {% endblock content %}

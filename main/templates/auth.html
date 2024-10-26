@@ -1,14 +1,79 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Rasa Jogja</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+    .bg-image {
+        background-image: url("{% static 'images/jogja_7.png' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .overlay {
+        background-color: rgba(171, 136, 109, 0.8); /* Overlay coklat */
+    }
+    .btn {
+        background-color: #4D3B2D; /* Coklat tua */
+        color: #F9F8F7; /* Putih kotor */
+        padding: 0.5rem 1.5rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-family: 'Noto Sans Javanese', sans-serif; /* Font Jawa */
+    }
+    .btn:hover {
+        background-color: #A27A5B; /* Coklat muda saat hover */
+        transform: scale(1.05); /* Efek membesar saat hover */
+    }
+    .btn:active {
+        background-color: #C7B49A; /* Coklat muda saat di-klik */
+    }
+    .glowing-text {
+        font-family: 'Dancing Script', cursive; /* Font sambung */
+        font-weight: bold;
+        font-size: 6rem; /* Ukuran lebih besar untuk menarik perhatian */
+        text-shadow: 0 0 10px #4D3B2D, 0 0 20px #4D3B2D; /* Glow efek */
+        color: #F9F8F7; /* Warna putih */
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    .tagline {
+        font-family: 'Noto Sans Javanese', sans-serif; /* Font Jawa */
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #F9F8F7; /* Putih */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Bayangan halus */
+        padding: 0.5rem 1rem;
+        border-left: 3px solid #4D3B2D;
+        border-right: 3px solid #4D3B2D;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 5px #4D3B2D, 0 0 10px #4D3B2D;
+        }
+        100% {
+            text-shadow: 0 0 15px #4D3B2D, 0 0 25px #4D3B2D;
+        }
+    }
+</style>
+{% endblock meta %}
+
 {% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-image text-white text-center">
+    <div class="overlay min-h-screen flex flex-col items-center justify-center w-full">
+        <h1 class="glowing-text mb-4">RasaJogja</h1> <!-- Teks sambung -->
+        <p class="tagline">“Jogja dalam satu rasa”</p>
 
-<h1>PAGE LOGIN OR REGISTER</h1>
-
-<a href="{% url 'main:login' %}">
-    <button>Login</button>
-</a>
-
-<a href="{% url 'main:register' %}">
-    <button>Register</button>
-</a>
-
+        <div class="space-x-4 mt-8">
+            <a href="{% url 'main:login' %}">
+                <button class="btn">Login</button>
+            </a>
+            <a href="{% url 'main:register' %}">
+                <button class="btn">Register</button>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock content %}

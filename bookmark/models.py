@@ -9,7 +9,7 @@ class Bookmarks(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique = ('user', 'product')
+        unique_together = ('user', 'product')
 
     def __str__(self):
         return f"{self.user.username} bookmarked {self.product.nama}"

@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from bookmark.views import *
 
 urlpatterns = [
-    path('add/<int:product_id>/', views.add_bookmark, name='add_bookmark'),
-    path('remove/<int:product_id>/', views.remove_bookmark, name='remove_bookmark'),
+    path('add/<int:product_id>/', add_bookmark, name='add_bookmark'),
+    path('remove/<int:product_id>/', remove_bookmark, name='remove_bookmark'),
 ]

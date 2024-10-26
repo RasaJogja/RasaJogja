@@ -164,7 +164,7 @@
             top: 10px;
             right: 10px;
             font-size: 1.5rem;
-            color: #8d6e63; /* Soft brown color for the bookmark icon */
+            color: #ffffff; 
             cursor: pointer;
             transition: color 0.3s ease;
             z-index: 1; /* Ensure button is above other elements */
@@ -226,7 +226,7 @@
         <!-- Existing product card structure here -->
         {% for product in products %}
             <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
-                <button class="bookmark-btn" onclick="bookmarkProduct('{{ product.fields.id }}')">&#9733;</button>
+               <button class="bookmark-btn" id="bookmark-{{ product.id }}" onclick="toggleBookmark('{{ product.id }}')">&#9733;</button>
                 {% if product.fields.url_gambar %}
                     <img src="{{ product.fields.url_gambar }}" alt="Gambar {{ product.fields.nama }}">
                 {% else %}
@@ -244,6 +244,7 @@
     </div>
 
     <script>
+        const bookmarkedProducts = new Set();
         function applyFilters() {
             const categoryFilter = document.getElementById("categoryFilter").value;
             const priceFilter = document.getElementById("priceFilter").value;
@@ -273,9 +274,31 @@
             }
         }
 
-        function bookmarkProduct(productId) {
-            alert('Produk ' + productId + ' telah di-bookmark!');
+        function toggleBookmark(productId) {
+            const bookmarkButton = document.getElementById(`bookmark-${productId}`);
+            const url = bookmarkedProducts.has(productId) ? `/bookmark/remove/${productId}/` : `/bookmark/add/${productId}/`;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}"  
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "added") {
+                    bookmarkedProducts.add(productId);
+                    bookmarkButton.style.color = "#5d4037";
+                    alert(`Produk ${productId} telah di-bookmark!`);
+                } else if (data.status === "removed") {
+                    bookmarkedProducts.delete(productId);
+                    bookmarkButton.style.color = "#ffffff";
+                    alert(`Produk ${productId} dihapus dari bookmark!`);
+                }
+            })
+            .catch(error => console.error("Error:", error));
         }
+
     </script>
 </body>
 </html>

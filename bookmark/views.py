@@ -1,28 +1,20 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Bookmarks
 from katalog.models import Product
+from django.http import JsonResponse
 
 @login_required
 def add_bookmark(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    bookmark, created = Bookmarks.objects.get_or_create(user=request.user, product=product)
-
-    if created:
-        messages.success(request, f"{product.nama} di bookmark.")
-    else:
-        messages.info(request, f"{product.nama} sudah di bookmark.")
-    return redirect('product_detail', product_id=product.id)
+    if request.method == "POST":
+        product = Product.objects.get(id=product_id)
+        Bookmarks.objects.get_or_create(user=request.user, product=product)
+        return JsonResponse({'status': 'added'})
+    
 
 def remove_bookmark(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    bookmark = Bookmarks.objects.filter(user=request.user, product=product).first()
-
-    if bookmark:
-        bookmark.delete()
-        messages.success(request, f"{product.nama} dihapus dari bookmark.")
-    else:
-        messages.info(request, f"{product.nama} belum di bookmark.")
-    return redirect('product_detail', product)
+    if request.method == "POST":
+        Bookmarks.objects.filter(user=request.user, product_id=product_id).delete()
+        return JsonResponse({'status': 'removed'})
 # Create your views here.

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarked Products</title>
+</head>
+<body>
+    <h1>Bookmarked Products</h1>
+
+    {% if bookmarked_products %}
+        <ul>
+            {% for product in bookmarked_products %}
+                <li>
+                    <h2>{{ product.nama }}</h2>
+                    <p>Kategori: {{ product.kategori }}</p>
+                    <p>Harga: Rp {{ product.harga }}</p>
+                    <p>Restoran: {{ product.nama_restoran }}</p>
+                    <p>Lokasi: {{ product.lokasi }}</p>
+                    
+                    {% if product.url_gambar %}
+                        <img src="{{ product.url_gambar }}" alt="Gambar produk {{ product.nama }}" style="width:150px; height:auto;">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No bookmarked products found.</p>
+    {% endif %}
+</body>
+</html>

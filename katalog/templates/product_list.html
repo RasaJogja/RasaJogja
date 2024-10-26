@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +22,11 @@
         }
 
         h1 {
+            margin-top: 80px;
             text-align: center;
             color: #4e342e; /* Rich brown for title */
             padding: 20px;
             background-color: #f7efe4; /* Soft cream with a modern touch */
-            margin: 0;
             font-size: 2.5rem;
             font-weight: bold;
             letter-spacing: 1px;
@@ -174,6 +180,11 @@
             color: #5d4037; /* Darker brown when hovered */
         }
 
+        .product-link {
+            text-decoration: none;
+            color: inherit; /* Optional: Keeps the color as the default or inherited color */
+        }
+
         /* Modern animations for a smoother experience */
         @keyframes fadeIn {
             0% {
@@ -196,6 +207,8 @@
             height: 400px;
             background: linear-gradient(135deg, #a1887f 0%, #6d4c41 100%);
             z-index: -1;
+
+    
         }
     </style>
 </head>
@@ -225,6 +238,7 @@
     <div class="product-grid" id="productGrid">
         <!-- Existing product card structure here -->
         {% for product in products %}
+        <a href="{% url 'review:show_review' product.pk %}" class="product-link">
             <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
                 <button class="bookmark-btn" onclick="bookmarkProduct('{{ product.fields.id }}')">&#9733;</button>
                 {% if product.fields.url_gambar %}
@@ -240,6 +254,7 @@
                     <p class="location">Lokasi: {{ product.fields.lokasi }}</p>
                 </div>
             </div>
+        </a>
         {% endfor %}
     </div>
 
@@ -279,3 +294,5 @@
     </script>
 </body>
 </html>
+
+{% endblock content %}

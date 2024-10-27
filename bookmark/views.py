@@ -36,7 +36,6 @@ def add_bookmark(request, product_id):
     bookmark, created = Bookmarks.objects.get_or_create(user=user, product=product)
 
     if not created:
-        # Jika bookmark sudah ada, hapus
         bookmark.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 

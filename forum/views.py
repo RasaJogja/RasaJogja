@@ -1,71 +1,75 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Forum, Thread, Comment
+from django.shortcuts import render, redirect, get_object_or_404
+from forum.forms import ForumEntryForm, CommentForm
+from forum.models import ForumEntry, Comment
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import ThreadForm, CommentForm,ForumForm  # Asumsikan Anda memiliki form untuk thread dan komentar
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
-def forum_list(request):
-    forums = Forum.objects.all()
-    return render(request, 'forum_list.html', {'forums': forums})
+# Create your views here.
+@login_required(login_url='/login')
+def show_main(request):
+    forum_entries = ForumEntry.objects.all()
+    context = {
+        'name': request.user.username,
+        'forum_entries': forum_entries
+    }
+    return render(request, "forum.html", context)
 
-def forum_detail(request, forum_id):
-    forum = get_object_or_404(Forum, id=forum_id)
-    threads = forum.threads.all()  # Mendapatkan semua thread dalam forum ini
-    return render(request, 'forum_detail.html', {'forum': forum, 'threads': threads})
+@csrf_exempt
+@require_POST
+def add_forum_entry_ajax(request):
+    title= request.POST.get("title")
+    description = request.POST.get("description")
+    user = request.user
+
+    new_forum = ForumEntry(
+        title=title, description=description,
+        user=user
+    )
+    new_forum.save()
+
+    return HttpResponse(b"CREATED", status=201)
+def create_forum_entry(request):
+    form = ForumEntryForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        forum_entry = form.save(commit=False)
+        forum_entry.user = request.user
+        forum_entry.save()
+        return redirect('forum:show_main')
+
+    context = {'form': form}
+    return render(request, "create_forum_entry.html", context)
 
 @login_required
-def thread_list(request, forum_id):
-    forum = get_object_or_404(Forum, id=forum_id)
-    threads = forum.threads.all()
-    return render(request, 'thread_list.html', {'forum': forum, 'threads': threads})
-
-@login_required
-def thread_detail(request, thread_id):
-    thread = get_object_or_404(Thread, id=thread_id)
-    comments = thread.comments.all()  # Mendapatkan semua komentar dalam thread ini
-    return render(request, 'thread_detail.html', {'thread': thread, 'comments': comments})
-
-@login_required
-def create_thread(request, forum_id):
-    forum = get_object_or_404(Forum, id=forum_id)
+def add_comment(request, entry_id):
+    forum_entry = get_object_or_404(ForumEntry, id=entry_id)
+    
     if request.method == 'POST':
-        form = ThreadForm(request.POST)
-        if form.is_valid():
-            thread = form.save(commit=False)
-            thread.forum = forum
-            thread.created_by = request.user
-            thread.save()
-            return redirect('forum:thread_detail', thread_id=thread.id)
-    else:
-        form = ThreadForm()
-    return render(request, 'create_thread.html', {'form': form, 'forum': forum})
+        content = request.POST.get('content')
+        if content:
+            Comment.objects.create(
+                forum_entry=forum_entry,
+                user=request.user,
+                content=content
+            )
+            messages.success(request, 'Comment added successfully!')
+        else:
+            messages.error(request, 'Comment cannot be empty.')
+    return redirect('forum:show_main')
 
 @login_required
-def create_comment(request, thread_id):
-    thread = get_object_or_404(Thread, id=thread_id)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.thread = thread
-            comment.created_by = request.user
-            comment.save()
-            return redirect('forum:thread_detail', thread_id=thread.id)
+def delete_forum_entry(request, forum_id):
+    forum_entry = get_object_or_404(ForumEntry, id=forum_id)
+    # Check if the logged-in user is the author of the forum entry
+    if request.user == forum_entry.author:
+        forum_entry.delete()
+        messages.success(request, "Forum entry deleted successfully.")
     else:
-        form = CommentForm()
-    return render(request, 'create_comment.html', {'form': form, 'thread': thread})
-
-@login_required
-def comment_list(request, thread_id):
-    thread = get_object_or_404(Thread, id=thread_id)
-    comments = thread.comments.all()
-    return render(request, 'comment_list.html', {'thread': thread, 'comments': comments})
-
-def create_forum(request):
-    if request.method == 'POST':
-        form = ForumForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('forum:forum_list')  # Redirect ke daftar forum setelah berhasil membuat forum
-    else:
-        form = ForumForm()
-    return render(request, 'create_forum.html', {'form': form})
+        messages.error(request, "You do not have permission to delete this entry.")
+    
+    return redirect('forum:show_main')  # Redirect to the forum list or appropriate page

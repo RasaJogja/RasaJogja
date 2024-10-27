@@ -1,17 +1,17 @@
+# forum/forms.py
 from django import forms
-from .models import Forum, Thread, Comment
+from .models import ForumEntry, Comment
 
-class ForumForm(forms.ModelForm):
+class ForumEntryForm(forms.ModelForm):
     class Meta:
-        model = Forum
-        fields = ['title', 'description']  # Field yang akan ditampilkan di form untuk membuat atau mengedit forum
-
-class ThreadForm(forms.ModelForm):
-    class Meta:
-        model = Thread
-        fields = ['title']  # Field yang akan ditampilkan di form untuk membuat atau mengedit thread
+        model = ForumEntry
+        fields = ['title', 'description']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'text-center'}),
+            'description': forms.Textarea(attrs={'class': 'text-center'}),
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['content']  # Field yang akan ditampilkan di form untuk membuat atau mengedit komentar
+        fields = ['content']

@@ -1,0 +1,640 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<!-- Menambahkan Font dari Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="content-container">
+    <!-- Left Column: Restaurant Suggestions -->
+    <aside class="sidebar">
+        <h2 class="sidebar-title">Top Places</h2>
+        <div class="restaurant-list">
+            <div class="restaurant">
+                <div class="restaurant-image-container">
+                    <img src="{% static 'images/vegan-cafe.jpg' %}" alt="Vegan Cafe Black Forest" class="restaurant-image">
+                </div>
+                <div class="restaurant-content">
+                    <h3 class="restaurant-name">Vegan Cafe Black Forest</h3>
+                    <p class="restaurant-rating">⭐ 4.8/5</p>
+                    <p class="restaurant-location">Jalan Parangtritis No. 87, Yogyakarta, Java, Indonesia, 55153</p>
+                </div>
+            </div>
+            <div class="restaurant">
+                <div class="restaurant-image-container">
+                    <img src="{% static 'images/am-co-jogja.jpg' %}" alt="A&M Co. Yogyakarta" class="restaurant-image">
+                </div>
+                <div class="restaurant-content">
+                    <h3 class="restaurant-name">A&M Co. Yogyakarta</h3>
+                    <p class="restaurant-rating">⭐ 4.5/5</p>
+                    <p class="restaurant-location">Jl. Parangtritis No.139, Brontokusuman, Kec. Mergangsan Kota Yogyakarta</p>
+                </div>
+            </div>
+            <div class="restaurant">
+                <div class="restaurant-image-container">
+                    <img src="{% static 'images/tempo-gelato.jpg' %}" alt="Tempo Gelato" class="restaurant-image">
+                </div>
+                <div class="restaurant-content">
+                    <h3 class="restaurant-name">Tempo Gelato</h3>
+                    <p class="restaurant-rating">⭐ 4.5/5</p>
+                    <p class="restaurant-location">Jl. Tamansiswa 56, Wirogunan, Mergangsan 55151 Yogyakarta</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Right Column: Forum Entries -->
+    <section class="forum-section">
+        <header class="forum-header">
+            <div class="forum-actions">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'forum:create_forum_entry' %}" class="btn btn-primary">
+                        <span class="btn-icon">➕</span>Add New Forum Entry
+                    </a>
+                {% else %}
+                    <a href="{% url 'main:login' %}" class="btn btn-primary">Login</a>
+                    <a href="{% url 'main:register' %}" class="btn btn-secondary">Register</a>
+                {% endif %}
+            </div>
+        </header>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if not forum_entries %}
+            <div class="empty-state">
+                <p>No forum entries yet. Be the first to create one!</p>
+            </div>
+        {% else %}
+            <div class="forum-entries">
+                {% for forum_entry in forum_entries %}
+                    <article class="forum-entry">
+                        <div class="entry-header">
+                            <h2 class="entry-title">{{ forum_entry.title }}</h2>
+                            <div class="entry-meta">
+                                <span class="entry-author"><i class="fas fa-user"></i> {{ forum_entry.author.username }}</span>
+                                <span class="entry-date">{{ forum_entry.created_at|date:"F j, Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            <p class="entry-description">{{ forum_entry.description|truncatewords:20 }}</p>
+                        </div>
+                        <div class="entry-footer">
+                            <div class="entry-meta-info">
+                                <span class="meta-info-item"><i class="fas fa-comments"></i> {{ forum_entry.comments.count }} Answers</span>
+                            </div>
+                            <div class="tags">
+                                {% for tag in forum_entry.tags.all %}
+                                    <span class="tag">#{{ tag.name }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <!-- Comments Section -->
+                        <div class="comments-section">
+                            <h3 class="comments-title">Comments</h3>
+                            
+                            {% if forum_entry.comments.all %}
+                                <div class="comments-list">
+                                    {% for comment in forum_entry.comments.all %}
+                                        <div class="comment">
+                                            <div class="comment-header">
+                                                <span class="comment-author"><i class="fas fa-user"></i> {{ comment.author.username }}</span>
+                                                <span class="comment-date">{{ comment.created_at|date:"F j, Y H:i" }}</span>
+                                            </div>
+                                            <div class="comment-content">
+                                                {{ comment.content }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p class="no-comments">No comments yet. Be the first to comment!</p>
+                            {% endif %}
+                            
+                            {% if user.is_authenticated %}
+                                <div class="comment-form-container">
+                                    <h4 class="comment-form-title">Add a Comment</h4>
+                                    <form method="POST" action="{% url 'forum:add_comment' entry_id=forum_entry.id %}" class="comment-form">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <textarea name="content" class="comment-input" rows="3" placeholder="Write your comment here..."></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary comment-submit">
+                                            <i class="fas fa-paper-plane"></i> Post Comment
+                                        </button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <p class="login-to-comment">Please <a href="{% url 'main:login' %}">login</a> to comment.</p>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+</div>
+
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pIRgq1Fjm4+GD9T7N7pVNklJek7rW74HfAFZth+3dWWZhi3JMEjJryJkM+WQ2w7jH4lVU5cllPp5blrh5X4pYg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    /* CSS Variables with the Color #AF8F6F */
+    :root {
+        --primary-color: #AF8F6F;
+        --secondary-color: #8C6B4F;
+        --accent-color: #C19A6B;
+        --light-bg: #F8F4F0;
+        --light-text: #ffffff;
+        --dark-text: #4B2E1D;
+        --medium-text: #AF8F6F;
+        --tag-bg: #E5D4C0;
+        --tag-hover-bg: #D6C3AF;
+        --alert-success-bg: #DFF2BF;
+        --alert-success-text: #4F8A10;
+        --alert-error-bg: #FFBABA;
+        --alert-error-text: #D8000C;
+    }
+
+    /* General Styles */
+    body {
+        background-color: var(--light-bg);
+        color: var(--dark-text);
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+    }
+
+    /* Content Container */
+    .content-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 40px;
+        width: 95%;
+        max-width: 1400px;
+        margin: 80px auto 40px;
+        padding: 0 20px;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+        background: var(--secondary-color);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        color: var(--light-text);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sidebar:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 10px;
+    }
+
+    .restaurant-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .restaurant {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .restaurant:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .restaurant-image-container {
+        overflow: hidden;
+    }
+
+    .restaurant-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .restaurant:hover .restaurant-image {
+        transform: scale(1.05);
+    }
+
+    .restaurant-content {
+        padding: 15px;
+    }
+
+    .restaurant-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--dark-text);
+        margin: 0 0 8px;
+    }
+
+    .restaurant-rating {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        margin: 0 0 8px;
+    }
+
+    .restaurant-location {
+        font-size: 0.875rem;
+        color: var(--medium-text);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    /* Forum Section Styles */
+    .forum-section {
+        background: var(--light-bg);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .forum-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .forum-header {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .forum-actions {
+        display: flex;
+        gap: 15px;
+    }
+
+    /* Button Styles */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        font-weight: 600;
+        font-size: 0.925rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: #ffffff;
+    }
+
+    .btn-primary:hover {
+        background-color: #9E7A5E;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+        color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+        background-color: #7B5F46;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-icon {
+        font-size: 1.1em;
+    }
+
+    /* Forum Entry Styles */
+    .forum-entries {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .forum-entry {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .forum-entry:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .entry-header {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #E0E0E0;
+        padding-bottom: 10px;
+    }
+
+    .entry-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-text);
+        margin: 0 0 8px;
+    }
+
+    .entry-meta {
+        display: flex;
+        gap: 15px;
+        color: var(--medium-text);
+        font-size: 0.9rem;
+    }
+
+    .entry-meta .icon {
+        margin-right: 5px;
+    }
+
+    .entry-content {
+        margin-bottom: 20px;
+    }
+
+    .entry-description {
+        color: var(--dark-text);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .entry-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .entry-meta-info {
+        color: var(--medium-text);
+        font-size: 0.925rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        background: var(--tag-bg);
+        color: var(--dark-text);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .tag:hover {
+        background: var(--tag-hover-bg);
+        color: var(--dark-text);
+    }
+
+    /* Comments Section Styles */
+    .comments-section {
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .comments-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--dark-text);
+        margin-bottom: 20px;
+    }
+
+    .comments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .comment {
+        background: var(--light-bg);
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .comment:hover {
+        transform: translateX(4px);
+        background-color: #EFE5D5;
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 0.925rem;
+    }
+
+    .comment-author {
+        color: var(--dark-text);
+        font-weight: 600;
+    }
+
+    .comment-date {
+        color: var(--medium-text);
+        font-size: 0.875rem;
+    }
+
+    .comment-content {
+        color: var(--dark-text);
+        font-size: 0.975rem;
+        line-height: 1.6;
+    }
+
+    .no-comments {
+        font-size: 0.925rem;
+        color: var(--medium-text);
+        text-align: center;
+        font-style: italic;
+    }
+
+    /* Comment Form Styles */
+    .comment-form-container {
+        margin-top: 30px;
+        background: var(--light-bg);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .comment-form-container:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .comment-form-title {
+        color: var(--dark-text);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .comment-input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid var(--medium-text);
+        border-radius: 8px;
+        font-size: 0.925rem;
+        color: var(--dark-text);
+        background-color: #ffffff;
+        resize: vertical;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(175, 143, 111, 0.5);
+        outline: none;
+    }
+
+    .comment-submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        font-size: 0.925rem;
+        font-weight: 600;
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+    }
+
+    .comment-submit:hover {
+        background-color: #9E7A5E;
+        transform: translateY(-2px);
+    }
+
+    .login-to-comment {
+        font-size: 0.925rem;
+        color: var(--medium-text);
+        text-align: center;
+    }
+
+    .login-to-comment a {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    /* Messages and Alerts */
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 0.925rem;
+    }
+
+    .alert-success {
+        background-color: var(--alert-success-bg);
+        color: var(--alert-success-text);
+    }
+
+    .alert-error {
+        background-color: var(--alert-error-bg);
+        color: var(--alert-error-text);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .content-container {
+            grid-template-columns: 1fr;
+        }
+
+        .forum-header {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .forum-actions {
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .entry-title {
+            font-size: 1.6rem;
+        }
+
+        .comments-title {
+            font-size: 1.3rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sidebar-title {
+            font-size: 1.5rem;
+        }
+
+        .entry-title {
+            font-size: 1.4rem;
+        }
+
+        .comments-title {
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,16 +1,13 @@
-# forum/urls.py
 from django.urls import path
-from . import views
+from forum.views import create_forum_entry,show_main
+from forum.views import add_comment, add_forum_entry_ajax, delete_forum_entry
 
 app_name = 'forum'
 
 urlpatterns = [
-    path('forum-list/', views.forum_list, name='forum_list'),  # URL untuk daftar forum
-    path('<uuid:forum_id>/', views.forum_detail, name='forum_detail'),  # URL untuk detail forum
-    path('<uuid:forum_id>/threads/', views.thread_list, name='thread_list'),  # URL untuk daftar thread dalam forum
-    path('threads/<uuid:thread_id>/', views.thread_detail, name='thread_detail'),  # URL untuk detail thread
-    path('threads/<uuid:thread_id>/comments/', views.comment_list, name='comment_list'),  # URL untuk daftar komentar dalam thread
-    path('create/', views.create_forum, name='create_forum'),  # URL untuk membuat forum baru
-    path('<uuid:forum_id>/threads/create/', views.create_thread, name='create_thread'),  # URL untuk membuat thread baru dalam forum
-    path('threads/<uuid:thread_id>/comments/create/', views.create_comment, name='create_comment'),  # URL untuk membuat komentar baru dalam thread
+    path('show-main', show_main, name='show_main'),  # Path kosong untuk halaman utama
+    path('create-forum-entry/', create_forum_entry, name='create_forum_entry'),
+    path('add-comment/<uuid:entry_id>/', add_comment, name='add_comment'),
+    path('create-forum-entry-ajax', add_forum_entry_ajax, name='add_forum_entry_ajax'),
+    path('delete_forum_entry/<int:forum_entry_id>/', delete_forum_entry, name='delete_forum_entry'),
 ]

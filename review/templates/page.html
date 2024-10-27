@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block meta %}
 <title>Review Produk</title>
@@ -22,16 +22,48 @@
         margin-left: auto; /* Memusatkan divider */
         margin-right: auto; /* Memusatkan divider */
     }
+    /* Styling untuk select */
+    .select-order {
+        border: 1px solid #8B4513; /* Warna coklat tua */
+        border-radius: 5px;
+        padding: 0.5rem;
+        background-color: white;
+        color: #8B4513; /* Warna coklat tua untuk teks */
+        margin-left: 0.5rem;
+        font-weight: bold; /* Mencetak tebal */
+    }
+    /* Styling untuk wrapper urutkan */
+    .order-wrapper {
+        display: flex; /* Menggunakan flexbox */
+        justify-content: center; /* Memusatkan konten secara horizontal */
+        align-items: center; /* Memusatkan konten secara vertikal */
+        margin-bottom: 1rem; /* Jarak bawah */
+    }
+    /* Styling untuk teks urutkan */
+    .order-label {
+        font-weight: bold; /* Mencetak tebal */
+        margin-right: 0.5rem; /* Jarak antara teks dan select */
+    }
 </style>
 {% endblock meta %}
 
 {% block content %}
-{% include 'navbar.html' %}  {# Sesuaikan dengan navbar utama yang sudah ada #}
+{% include 'navbar.html' %}
 
 <div class="py-20 bg-white">
     <h1 class="text-4xl font-bold text-center mb-10">{{ product.nama }}'s Review</h1> 
 
-    <div class="divider"></div>  {# Garis pemisah di bawah judul #}
+    <div class="divider"></div>
+
+    <div class="order-wrapper">
+        <span class="order-label">Urutkan:</span>
+        <form method="get" action="">
+            <select name="order" class="select-order" onchange="this.form.submit()">
+                <option value="newest" {% if order == 'newest' %}selected{% endif %}>Terbaru</option>
+                <option value="oldest" {% if order == 'oldest' %}selected{% endif %}>Terlama</option>
+            </select>
+        </form>
+    </div>
 
     <!-- Container untuk review -->
     <div class="max-w-3xl mx-auto bg-white shadow-lg p-6 rounded-lg">
@@ -50,9 +82,14 @@
         {% endfor %}
     </div>
 
-    <div class="text-center mt-8">  {# Pindahkan tombol ke sini #}
+    <div class="text-center mt-8">
         <a href="{% url 'review:add_review' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
             Add Review
+        </a>
+    </div>
+    <div class="text-center mt-6">
+        <a href="{% url 'bookmark:add_bookmark' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
+            Add Product to Bookmark
         </a>
     </div>
 </div>

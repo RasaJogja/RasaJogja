@@ -13,7 +13,6 @@
     <style>
         /* Basic styles for the page */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4; /* Modern soft gray background */
             margin: 0;
             padding: 0;
@@ -170,14 +169,11 @@
             top: 10px;
             right: 10px;
             font-size: 1.5rem;
-            color: #8d6e63; /* Soft brown color for the bookmark icon */
+            color: rgb(255, 255, 255); 
             cursor: pointer;
             transition: color 0.3s ease;
             z-index: 1; /* Ensure button is above other elements */
-        }
-
-        .bookmark-btn:hover {
-            color: #5d4037; /* Darker brown when hovered */
+            
         }
 
         .product-link {
@@ -238,9 +234,8 @@
     <div class="product-grid" id="productGrid">
         <!-- Existing product card structure here -->
         {% for product in products %}
-        <a href="{% url 'review:show_review' product.pk %}" class="product-link">
-            <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
-                <button class="bookmark-btn" onclick="bookmarkProduct('{{ product.fields.id }}')">&#9733;</button>
+        <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
+            <a href="{% url 'review:show_review' product.pk %}" class="product-link">
                 {% if product.fields.url_gambar %}
                     <img src="{{ product.fields.url_gambar }}" alt="Gambar {{ product.fields.nama }}">
                 {% else %}
@@ -253,12 +248,24 @@
                     <p class="restaurant">Restoran: {{ product.fields.nama_restoran }}</p>
                     <p class="location">Lokasi: {{ product.fields.lokasi }}</p>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         {% endfor %}
     </div>
 
     <script>
+        const bookmarkedProducts = new Set('{{ user_bookmarks|safe }}');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+        // Tandai bookmark yang sudah disimpan
+            bookmarkedProducts.forEach(productId => {
+                const bookmarkButton = document.getElementById(`bookmark-${productId}`);
+                if (bookmarkButton) {
+                    bookmarkButton.style.color = "#ffff00"; // Warna bookmark aktif
+                }
+            });
+        });
+
         function applyFilters() {
             const categoryFilter = document.getElementById("categoryFilter").value;
             const priceFilter = document.getElementById("priceFilter").value;
@@ -288,9 +295,6 @@
             }
         }
 
-        function bookmarkProduct(productId) {
-            alert('Produk ' + productId + ' telah di-bookmark!');
-        }
     </script>
 </body>
 </html>

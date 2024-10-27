@@ -2,6 +2,15 @@
 {% block content %}
 {% include 'navbar.html' %}
 
+<head>
+    <style>
+        body {
+            background-color: #F8F4F0;
+        }
+    </style>
+</head>
+   
+<body>
 <div class="container mx-auto px-4 py-8 mt-16 max-w-xl" id="chat-container">
     {% if chat.messages.count == 0 %}
         <div class="flex items-center justify-center h-64" id="empty-message">
@@ -104,4 +113,5 @@
         .catch(error => console.error('Error:', error));
     });
 </script>
+</body>
 {% endblock content %}

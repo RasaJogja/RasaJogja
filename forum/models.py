@@ -5,8 +5,8 @@ import uuid
 class ForumEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=255, default="Default Title")  # Default title
-    description = models.TextField(default="Default description")  # Default description
+    title = models.CharField(max_length=255, default=None)  # Default title
+    description = models.TextField(default=None)  # Default description
 
     def __str__(self):
         return self.title

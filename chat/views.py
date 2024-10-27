@@ -27,10 +27,8 @@ def create_chat(request):
                 chat_users_set.remove(request.user)
                 users_selected.update(user.id for user in chat_users_set)
         user_valid = User.objects.filter(id__in=users_selected)
-    return render(request, 'create_chat.html', {'users': user_valid, 'user_loggedin':request.user})
-    
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, redirect
+    return render(request, 'create_chat.html', {'users': user_valid, 'user_loggedin':request.user, 'existing_messages':Message.objects.all().order_by('-timestamp')})
+
 
 def handle_room(request, selected_user_id):
     # Retrieve the selected user by ID

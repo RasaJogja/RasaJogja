@@ -13,7 +13,7 @@
     <style>
         /* Basic styles for the page */
         body {
-            background-color: #f4f4f4; /* Modern soft gray background */
+            background-color: #F8F4F0; /* Soft gray background */
             margin: 0;
             padding: 0;
             color: #3e2723; /* Dark brown for readability */
@@ -25,7 +25,7 @@
             text-align: center;
             color: #4e342e; /* Rich brown for title */
             padding: 20px;
-            background-color: #f7efe4; /* Soft cream with a modern touch */
+            background-color: #f7efe4; /* Soft cream background */
             font-size: 2.5rem;
             font-weight: bold;
             letter-spacing: 1px;
@@ -39,7 +39,7 @@
             justify-content: center;
             gap: 15px;
             padding: 20px;
-            background-color: #f7efe4; /* Light cream background */
+            background-color: white; /* Light cream background */
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             margin-bottom: 30px;
@@ -89,24 +89,22 @@
             background-color: #fffdf9; /* Light modern background inside the grid */
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for elegance */
-            animation: fadeIn 1s ease-in-out;
         }
 
         /* Styling for each product card */
         .product-card {
             display: flex;
-            flex-direction: column; /* Ensure content is stacked vertically */
-            justify-content: space-between; /* Pushes content to occupy space evenly */
-            background-color: #fdf8f4; /* Soft cream with a subtle tone */
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fdf8f4; /* Soft cream background */
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
-            border: 1px solid #d7ccc8; /* Modern and clean border */
-            position: relative;
-            min-height: 450px; /* Set a consistent height */
-            padding-bottom: 20px; /* Ensures padding at the bottom */
+            border: 1px solid #d7ccc8;
+            min-height: 450px;
+            padding-bottom: 20px;
         }
 
         .product-card:hover {
@@ -119,7 +117,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-bottom: 2px solid #a1887f; /* Brown accent for image border */
+            border-bottom: 2px solid #a1887f;
             transition: transform 0.3s ease-in-out;
         }
 
@@ -172,45 +170,47 @@
             color: rgb(255, 255, 255); 
             cursor: pointer;
             transition: color 0.3s ease;
-            z-index: 1; /* Ensure button is above other elements */
-            
         }
 
         .product-link {
             text-decoration: none;
-            color: inherit; /* Optional: Keeps the color as the default or inherited color */
+            color: inherit;
         }
 
-        /* Modern animations for a smoother experience */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .sidebar-title {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+            position: relative;
         }
 
-        /* Modern fixed background with gradient */
-        body::before {
+        .sidebar-title::after {
             content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #a1887f 0%, #6d4c41 100%);
-            z-index: -1;
+            width: 80px;
+            height: 4px;
+            background-color: #AF8F6F;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
 
-    
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color:  #AF8F6F;
+            margin-bottom: 40px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
    
-    <h1>Daftar Produk Rasa Jogja</h1>
+    {% comment %} <h1>Daftar Produk Rasa Jogja</h1> {% endcomment %}
+    <h2 class="sidebar-title">Daftar Product RasaJogja</h2>
+    <p class="subtitle">Berikut adalah kuliner yang bisa anda nikmati!</p>
     
     <!-- Filter Kategori dan Harga -->
     <div class="filter-container">
@@ -232,7 +232,6 @@
     </div>
 
     <div class="product-grid" id="productGrid">
-        <!-- Existing product card structure here -->
         {% for product in products %}
         <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
             <a href="{% url 'review:show_review' product.pk %}" class="product-link">
@@ -257,7 +256,6 @@
         const bookmarkedProducts = new Set('{{ user_bookmarks|safe }}');
         
         document.addEventListener('DOMContentLoaded', () => {
-        // Tandai bookmark yang sudah disimpan
             bookmarkedProducts.forEach(productId => {
                 const bookmarkButton = document.getElementById(`bookmark-${productId}`);
                 if (bookmarkButton) {
@@ -270,33 +268,20 @@
             const categoryFilter = document.getElementById("categoryFilter").value;
             const priceFilter = document.getElementById("priceFilter").value;
             const productGrid = document.getElementById("productGrid");
-            const products = Array.from(productGrid.getElementsByClassName("product-card"));
+            const productCards = Array.from(productGrid.getElementsByClassName("product-card"));
 
-            // Filter berdasarkan kategori
-            products.forEach(product => {
-                const productCategory = product.getAttribute("data-category");
-                if (categoryFilter === "all" || productCategory === categoryFilter) {
-                    product.style.display = "block";
-                } else {
-                    product.style.display = "none";
-                }
+            productCards.forEach(card => {
+                const productCategory = card.getAttribute("data-category");
+                const productPrice = parseFloat(card.getAttribute("data-price"));
+
+                const categoryMatch = categoryFilter === "all" || categoryFilter === productCategory;
+                const priceMatch = true;
+
+                card.style.display = categoryMatch && priceMatch ? "block" : "none";
             });
-
-            // Urutkan berdasarkan harga hanya jika opsi "asc" atau "desc" dipilih
-            if (priceFilter === "asc" || priceFilter === "desc") {
-                products.sort((a, b) => {
-                    const priceA = parseInt(a.getAttribute("data-price"));
-                    const priceB = parseInt(b.getAttribute("data-price"));
-                    return priceFilter === "asc" ? priceA - priceB : priceB - priceA;
-                });
-
-                // Re-render produk sesuai urutan harga
-                products.forEach(product => productGrid.appendChild(product));
-            }
         }
-
     </script>
 </body>
 </html>
-
-{% endblock content %}
+{% include 'footer.html' %}
+{% endblock %}

@@ -82,16 +82,15 @@
         {% endfor %}
     </div>
 
-    <div class="text-center mt-8">
+    <div class="flex justify-center space-x-4 mt-8">
         <a href="{% url 'review:add_review' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
             Add Review
         </a>
-    </div>
-    <div class="text-center mt-6">
         <a href="{% url 'bookmark:add_bookmark' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
-            Add Product to Bookmark
+            Bookmark
         </a>
     </div>
+    
 </div>
 
 {% endblock content %}

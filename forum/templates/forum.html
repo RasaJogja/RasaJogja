@@ -46,6 +46,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Forum Section -->
         <section class="forum-section">
             <header class="forum-header">
@@ -60,6 +61,14 @@
                     {% endif %}
                 </div>
             </header>
+
+            <!-- Search Form -->
+            <form method="GET" action="" class="search-form">
+                <input type="text" name="q" placeholder="Cari forum..." value="{{ request.GET.q }}" class="search-input">
+                <button type="submit" class="btn btn-secondary search-button">
+                    <i class="fas fa-search"></i> Cari
+                </button>
+            </form>
 
             {% if messages %}
                 <div class="messages">
@@ -96,11 +105,13 @@
                                 <span class="entry-date">{{ forum_entry.created_at|date:"F j, Y" }}</span>
                             </div>
                             <div class="entry-content">
-                                <p class="entry-description">{{ forum_entry.description|linebreaksbr }}</p>
+                                <p class="entry-description">{{ forum_entry.description|truncatewords:20 }}</p>
                             </div>
                             <div class="entry-footer">
                                 <div class="entry-meta-info">
-                                    <span class="meta-info-item"><i class="fas fa-comments"></i> {{ forum_entry.comments.count }} Jawaban</span>
+                                    <button class="toggle-comments-btn" data-entry-id="{{ forum_entry.id }}">
+                                        <i class="fas fa-comments"></i> Lihat Komentar ({{ forum_entry.comments.count }})
+                                    </button>
                                 </div>
                                 <div class="tags">
                                     {% for tag in forum_entry.tags.all %}
@@ -109,8 +120,8 @@
                                 </div>
                             </div>
 
-                            <!-- Comments Section -->
-                            <div class="comments-section">
+                            <!-- Comments Section (Hidden by Default) -->
+                            <div class="comments-section" id="comments-{{ forum_entry.id }}" style="display: none;">
                                 <h4 class="comments-title">Komentar</h4>
                                 <div class="comments-list">
                                     {% for comment in forum_entry.comments.all %}
@@ -128,24 +139,24 @@
                                         <p class="no-comments">Belum ada komentar.</p>
                                     {% endif %}
                                 </div>
-                            </div>
 
-                            <!-- Comment Form -->
-                            <div class="comment-form-container">
-                                <h4 class="comment-form-title">Tambahkan Komentar</h4>
-                                {% if user.is_authenticated %}
-                                    <form id="comment-form-{{ forum_entry.id }}" class="comment-form" action="{% url 'forum:add_comment' forum_entry.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <textarea name="content" class="comment-input" rows="3" placeholder="Tulis komentar Anda di sini..."></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary comment-submit">
-                                            <i class="fas fa-paper-plane"></i> Kirim Komentar
-                                        </button>
-                                    </form>
-                                {% else %}
-                                    <p class="login-to-comment">Silakan <a href="{% url 'main:login' %}">login</a> untuk menambahkan komentar.</p>
-                                {% endif %}
+                                <!-- Comment Form -->
+                                <div class="comment-form-container">
+                                    <h4 class="comment-form-title">Tambahkan Komentar</h4>
+                                    {% if user.is_authenticated %}
+                                        <form id="comment-form-{{ forum_entry.id }}" class="comment-form" action="{% url 'forum:add_comment' forum_entry.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <textarea name="content" class="comment-input" rows="3" placeholder="Tulis komentar Anda di sini..."></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary comment-submit">
+                                                <i class="fas fa-paper-plane"></i> Kirim Komentar
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <p class="login-to-comment">Silakan <a href="{% url 'main:login' %}">login</a> untuk menambahkan komentar.</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </article>
                     {% endfor %}
@@ -157,6 +168,24 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Toggle Comments
+            const toggleButtons = document.querySelectorAll('.toggle-comments-btn');
+
+            toggleButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const entryId = this.getAttribute('data-entry-id');
+                    const commentsSection = document.getElementById('comments-' + entryId);
+                    if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
+                        commentsSection.style.display = 'block';
+                        this.innerHTML = '<i class="fas fa-comments"></i> Sembunyikan Komentar';
+                    } else {
+                        commentsSection.style.display = 'none';
+                        this.innerHTML = '<i class="fas fa-comments"></i> Lihat Komentar (' + this.getAttribute('data-comments-count') + ')';
+                    }
+                });
+            });
+
+            // Handle Comment Form Submission
             const commentForms = document.querySelectorAll('.comment-form');
 
             commentForms.forEach(function(form) {
@@ -179,13 +208,13 @@
                         if (data.success) {
                             form.querySelector('textarea[name="content"]').value = '';
 
-                            let commentsList = form.closest('.forum-entry').querySelector('.comments-list');
-                            const noCommentsText = form.closest('.forum-entry').querySelector('.no-comments');
+                            let commentsList = form.closest('.comments-section').querySelector('.comments-list');
+                            const noCommentsText = form.closest('.comments-section').querySelector('.no-comments');
 
                             if (!commentsList) {
                                 commentsList = document.createElement('div');
                                 commentsList.classList.add('comments-list');
-                                form.closest('.forum-entry').appendChild(commentsList);
+                                form.closest('.comments-section').appendChild(commentsList);
                             }
 
                             if (noCommentsText) {
@@ -206,10 +235,12 @@
 
                             commentsList.appendChild(newComment);
 
-                            const answersCountSpan = form.closest('.forum-entry').querySelector('.meta-info-item');
-                            if (answersCountSpan) {
+                            // Update the comments count
+                            const toggleButton = document.querySelector('.toggle-comments-btn[data-entry-id="' + data.entry_id + '"]');
+                            if (toggleButton) {
                                 const count = data.answers_count;
-                                answersCountSpan.innerHTML = `<i class="fas fa-comments"></i> ${count} Jawaban`;
+                                toggleButton.setAttribute('data-comments-count', count);
+                                toggleButton.innerHTML = '<i class="fas fa-comments"></i> Lihat Komentar (' + count + ')';
                             }
 
                         } else {
@@ -219,6 +250,24 @@
                     .catch(error => {
                         console.error('Error:', error);
                     });
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menghandle Klik pada Kartu Restoran
+            const restaurantCards = document.querySelectorAll('.restaurant');
+
+            restaurantCards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    // Menghapus kelas 'active' dari semua kartu restoran
+                    restaurantCards.forEach(function(c) {
+                        c.classList.remove('active');
+                    });
+                    // Menambahkan kelas 'active' ke kartu yang diklik
+                    this.classList.add('active');
+
+                    // Menggulir ke kartu yang diklik
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 });
             });
         });
@@ -277,7 +326,6 @@
         .top-places-section {
             margin-bottom: 60px;
         }
-
         .sidebar-title {
             text-align: center;
             font-size: 2.5rem;
@@ -320,6 +368,9 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             flex: 1 1 calc(33% - 20px);
             max-width: calc(33% - 20px);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
         }
 
         .restaurant:hover {
@@ -339,7 +390,8 @@
             transition: transform 0.5s ease;
         }
 
-        .restaurant:hover .restaurant-image {
+        .restaurant:hover .restaurant-image,
+        .restaurant.active .restaurant-image {
             transform: scale(1.1);
         }
 
@@ -369,6 +421,14 @@
             margin: 0;
             line-height: 1.5;
         }
+        .restaurant.active {
+            transform: scale(1.1);
+            z-index: 1;
+        }
+        .restaurant:not(.active) {
+            opacity: 0.7;
+        }
+
 
         /* Forum Section */
         .forum-section {
@@ -383,6 +443,36 @@
             display: flex;
             justify-content: flex-end;
             margin-bottom: 30px;
+        }
+
+        /* Search Form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-text);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--dark-text);
+            background-color: #ffffff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(175, 143, 111, 0.5);
+            outline: none;
+        }
+
+        .search-button {
+            padding: 12px 20px;
+            font-size: 1rem;
         }
 
         /* Buttons */
@@ -426,34 +516,34 @@
         /* Forum Entries */
         .forum-entries {
             display: flex;
-            flex-direction: column;
-            gap: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .forum-entry {
             background: #ffffff;
             border-radius: 16px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 calc(33.333% - 20px);
+            max-width: calc(33.333% - 20px);
         }
 
         .forum-entry:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .entry-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #E0E0E0;
-            padding-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .entry-title {
-            font-size: 2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--dark-text);
             margin: 0;
@@ -464,7 +554,7 @@
             background: transparent;
             border: none;
             color: var(--alert-error-text);
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -475,20 +565,20 @@
 
         .entry-meta {
             display: flex;
-            gap: 20px;
+            gap: 10px;
             color: var(--medium-text);
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
         }
 
         .entry-content {
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
 
         .entry-description {
             color: var(--dark-text);
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.4;
             margin: 0;
         }
 
@@ -496,31 +586,47 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .entry-meta-info {
             color: var(--medium-text);
-            font-size: 1rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
+        }
+
+        .toggle-comments-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-comments-btn:hover {
+            color: var(--accent-color);
         }
 
         .tags {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .tag {
             background: var(--tag-bg);
             color: var(--dark-text);
-            padding: 8px 16px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -532,33 +638,33 @@
 
         /* Comments Section */
         .comments-section {
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 15px;
+            padding-top: 10px;
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .comments-title {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--dark-text);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         .comments-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .comment {
             background: var(--light-bg);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .comment:hover {
-            transform: translateX(6px);
+            transform: translateX(4px);
             background-color: #EFE5D5;
         }
 
@@ -566,8 +672,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            font-size: 1rem;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
         }
 
         .comment-author {
@@ -577,17 +683,17 @@
 
         .comment-date {
             color: var(--medium-text);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         .comment-content {
             color: var(--dark-text);
-            font-size: 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .no-comments {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--medium-text);
             text-align: center;
             font-style: italic;
@@ -595,31 +701,31 @@
 
         /* Comment Form */
         .comment-form-container {
-            margin-top: 40px;
+            margin-top: 20px;
             background: var(--light-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s ease;
         }
 
         .comment-form-container:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
         }
 
         .comment-form-title {
             color: var(--dark-text);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .comment-input {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             border: 1px solid var(--medium-text);
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             color: var(--dark-text);
             background-color: #ffffff;
             resize: vertical;
@@ -636,8 +742,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 28px;
-            font-size: 1rem;
+            padding: 10px 25px;
+            font-size: 0.95rem;
             font-weight: 600;
             background-color: var(--primary-color);
             color: #ffffff;
@@ -645,7 +751,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .comment-submit:hover {
@@ -654,7 +760,7 @@
         }
 
         .login-to-comment {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--medium-text);
             text-align: center;
         }
@@ -688,20 +794,26 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .restaurant {
+            .restaurant,
+            .forum-entry {
                 flex: 1 1 calc(50% - 20px);
                 max-width: calc(50% - 20px);
             }
         }
 
         @media (max-width: 768px) {
-            .restaurant {
+            .restaurant,
+            .forum-entry {
                 flex: 1 1 100%;
                 max-width: 100%;
             }
 
             .forum-section {
                 padding: 30px;
+            }
+
+            .entry-title {
+                font-size: 1.2rem;
             }
 
             .comment-form-container {

@@ -14,10 +14,10 @@ Dengan RasaJogja, pengguna dapat dengan mudah mengakses informasi tentang hidang
 
 Aplikasi ini dilengkapi oleh berbagai fitur yang dapat memudahkan pengguna diantanya adalah :
 - Review : Pengguna dapat memberikan ulasan dengan sistem penilaian bintang serta pesan singkat tentang pengalaman mereka dengan restoran. Pemilik toko dapat menanggapi ulasan, memberikan solusi jika ada keluhan, dan memperkuat hubungan dengan pelanggan.
-- Katalog : Fitur katalog memungkinkan pengguna untuk mencari makanan berdasarkan kategori, lokasi, dan harga. Pemilik restoran dapat menambahkan produk dan memperbarui informasi secara real-time, sehingga pengguna dapat menemukan kuliner sesuai dengan preferensi mereka.
+- Katalog : Fitur katalog memungkinkan pengguna untuk mencari makanan berdasarkan kategori, lokasi, dan harga. Developer dapat menambahkan produk dan memperbarui informasi secara berkala, sehingga pengguna dapat menemukan kuliner sesuai dengan preferensi mereka.
 - Chat ke Toko Pengguna : Pengguna dapat berkomunikasi langsung dengan pemilik restoran untuk menanyakan informasi lebih lanjut seperti bahan baku, jam operasional, dan pembayaran. Pemilik restoran dapat memberikan jawaban yang akurat dan cepat, memastikan layanan lebih personal dan responsif.
-- Forum : Pengguna dapat berinteraksi dalam forum untuk berdiskusi dan membaca ulasan makanan dengan rating tertinggi. Pemilik restoran juga dapat membuat forum untuk berkomunikasi dengan pengguna, membantu mereka menemukan rekomendasi kuliner terbaik.
-- Bookmark : Pengguna dapat menandai makanan atau restoran favorit mereka dengan fitur bookmark, mengakses daftar tersebut kapan saja, dan mendapatkan notifikasi jika ada perubahan harga atau promo. Fitur ini membantu pengguna mengelola kuliner favorit dengan lebih mudah dan terorganisir.
+- Forum : Pengguna dapat berinteraksi dalam forum untuk berdiskusi dan membaca ulasan makanan dengan rating tertinggi di infografis. Pemilik restoran juga dapat membuat forum untuk berkomunikasi dengan pengguna, membantu mereka menemukan rekomendasi kuliner terbaik.
+- Bookmark : Pengguna dapat menandai makanan atau restoran favorit mereka dengan fitur bookmark, mengakses daftar tersebut kapan saja, dan mendapatkan notifikasi jika ada perubahan harga, promo, lokasi, dan lain-lain. Fitur ini membantu pengguna mengelola kuliner favorit dengan lebih mudah dan terorganisir.
 
 Manfaat dari aplikasi ini : 
 1. Untuk Wisatawan
@@ -50,7 +50,7 @@ Kami memahami bahwa pengguna membutuhkan cara yang praktis agar dapat menemukan 
 Katalog ini memungkinkan pengguna untuk menelusuri berbagai makanan di Jogjakarta. Fitur ini dilengkapi dengan kategori produk, detail lokasi restoran, harga, rating, filter, dan detail produk. Oleh karena itu, dengan adanya fitur katalog ini diharapkan pengguna dapat menemukan makan yang sesuai dengan keinginan dan selera mereka. serta dapat menjelajahi keunikan kuliner yang ditawarkan restoran di Jogjakarta.
 | Pengguna Umum    | Pemilik Toko |
 | ---------------- | ------------ |
-|  Pengguna dapat menemukan makanan yang mereka inginkan berdasarkan preferensi produk, lokasi, dan dana mereka. | Dapat menambahkan produk dalam katalog dan memperbarui informasi secara real-time.
+|  Pengguna dapat menemukan makanan yang mereka inginkan berdasarkan preferensi produk, lokasi, dan dana mereka. | Dapat memberikan feedback terkait produk mereka di dalam katalog dan menghubungi pihak developer.
 
 
 ### 3. Chat ke Toko
@@ -76,15 +76,15 @@ Kami memahami bahwa berbagai faktor, dapat mempengaruhi pilihan seseorang dalam 
 
 Kami memahami bahwa dari berbagai macam jenis kuliner yang tersedia, terkadang pengguna ingin menyimpan beberapa kuliner favorit mereka untuk diakses kembali di kemudian hari. Fitur bookmark ini memungkinkan pengguna untuk menandai dan menyimpan tempat makan atau makanan yang mereka sukai. Dengan demikian, pengguna dapat dengan mudah mengelola daftar kuliner favorit tanpa perlu mencarinya ulang setiap kali.
 
-| Pengguna Umum    | Notifikasi Bookmark |
-| ---------------- | ------------ |
-| Pengguna dapat membuat daftar bookmark makanan dan tempat makan favorit mereka. Mereka juga dapat mengakses daftar ini kapan saja dan memperbarui sesuai preferensi kuliner mereka. | Pengguna akan menerima notifikasi jika ada perubahan pada makanan atau tempat makan yang ada di daftar bookmark mereka, seperti perubahan harga, promo, atau review terbaru.
+| Pengguna Umum    | 
+| ---------------- | 
+| Pengguna dapat membuat daftar bookmark makanan dan tempat makan favorit mereka. Mereka juga dapat mengakses daftar ini kapan saja dan memperbarui sesuai preferensi kuliner mereka.
 
 
 Dengan fitur bookmark ini, RasaJogja memberikan pengalaman yang lebih personal dan terorganisir untuk para pengguna dalam menjelajahi dan mengelola kuliner favorit mereka.
 
 ## Dataset
-Kami menggunakan dataset dari [Kaggle - Places to Eat in the Jogja Region](https://www.kaggle.com/datasets/yudhaislamisulistya/places-to-eat-in-the-jogja-region) untuk informasi terkait lokasi restoran dan jenis kuliner di Jogjakarta.
+Kami menggunakan dataset dari [Dataset Kuliner Yogyakarta](https://docs.google.com/spreadsheets/d/1LelYSWyIbtKYAdcubHRHUZLkp7jnfJAlvegf-s0BD8c/edit?gid=1296951064#gid=1296951064) untuk informasi terkait lokasi restoran dan jenis kuliner di Jogjakarta.
 
 ## Jenis Pengguna (_Role_)
 

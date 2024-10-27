@@ -1,4 +1,4 @@
-# [RasaJogja](http://ardi-syahputra-rasajogja.pbp.cs.ui.ac.id/) 😋🦑🍟🌭🍔
+# [RasaJogja](http://clarissa-indriana-rasajogja.pbp.cs.ui.ac.id/) 😋🦑🍟🌭🍔
 
 ## Anggota Kelompok B05
 - [Clarissa Indriana Pramesti](https://github.com/clarissaindriana) (2306211660)

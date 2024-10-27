@@ -4,13 +4,16 @@ import uuid
 
 class ForumEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # tambahkan baris ini
-    title = models.CharField(max_length=255)  # Menambahkan judul untuk setiap entri forum
-    description = models.TextField()  # Menambahkan deskripsi untuk setiap entri forum
-    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=255, default="Default Title")  # Default title
+    description = models.TextField(default="Default description")  # Default description
+
+    def __str__(self):
+        return self.title
+
 
 class Comment(models.Model):
-    forum_entry = models.ForeignKey(ForumEntry, on_delete=models.CASCADE, related_name='comments')
+    forum_entry = models.ForeignKey(ForumEntry, on_delete=models.CASCADE, related_name='comments', default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,12 +1,10 @@
 from django.urls import path
-from bookmark.views import handle_bookmark, bookmarked_products
+from bookmark.views import remove_bookmark, bookmarked_products, add_bookmark
 
 app_name = 'bookmark'
 
 urlpatterns = [
-    path('bookmark/<int:product_id>/', handle_bookmark, name='handle_bookmark'),
+    path('bookmark/remove/<int:product_id>/', remove_bookmark, name='remove_bookmark'),
+    path('bookmark/add/<int:product_id>/', add_bookmark, name='add_bookmark'),
     path('bookmarked-products/', bookmarked_products, name='bookmarked_products'),
-    # path('show-bookmarks', show_bookmarks, name='show_bookmarks'),  # URL untuk menampilkan daftar produk
-    # path('toggle/<int:product_id>/', toggle_bookmark, name='toggle_bookmark'),  # URL untuk bookmark
-    # # Tambahkan URL lainnya jika perlu
 ]

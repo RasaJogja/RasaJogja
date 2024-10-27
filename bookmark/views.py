@@ -11,18 +11,34 @@ from django.shortcuts import get_object_or_404
 
 @csrf_exempt
 @login_required
-def handle_bookmark(reqest, product_id):
+def remove_bookmark(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, id=product_id)
+        user = request.user
+
+        # Mencari atau membuat bookmark baru
+        bookmark, created = Bookmarks.objects.get_or_create(user=user, product=product)
+
+        if not created:
+            # Jika bookmark sudah ada, hapus
+            bookmark.delete()
+            # is_bookmarked = False
+            return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+    
+@csrf_exempt
+@login_required
+def add_bookmark(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    user = reqest.user
+    user = request.user
 
     bookmark, created = Bookmarks.objects.get_or_create(user=user, product=product)
 
     if not created:
+        # Jika bookmark sudah ada, hapus
         bookmark.delete()
-    #     is_bookmarked = False
-    # else:
-    #     is_bookmarked = True
-    return HttpResponseRedirect(reqest.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 @csrf_exempt
 @login_required

@@ -104,7 +104,7 @@
         {% if bookmarked_products %}
             {% for product in bookmarked_products %}
                 <div class="product-card">
-                    <a href="{% url 'bookmark:handle_bookmark' product.pk %}" class="btn-remove" title="Remove Bookmark">&times;</a>
+                    <a href="{% url 'bookmark:remove_bookmark' product.pk %}" data-id="{{ product.pk }}" class="btn-remove" title="Remove Bookmark">&times;</a>
                     {% if product.url_gambar %}
                         <img src="{{ product.url_gambar }}" alt="Gambar produk {{ product.nama }}">
                     {% else %}
@@ -120,9 +120,38 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p style="text-align: center; color: #8d6e63; font-size: 1.2rem;">No bookmarked products found.</p>
+            <p style="text-align: center; color: #000000; font-size: 1.2rem;">No bookmarked products found.</p>
         {% endif %}
     </div>
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.btn-remove').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();  // Mencegah reload halaman
+                const productId = button.getAttribute('data-id');  // Ambil ID produk
+
+                fetch(`{% url 'bookmark:remove_bookmark' 0 %}`.replace('0', productId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',  // Kirim token CSRF
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({product_id: productId})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        button.closest('.product-card').remove();  // Hapus card produk
+                    } else {
+                        alert('Gagal menghapus produk dari bookmark.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
 {% endblock content %}

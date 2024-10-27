@@ -9,8 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 # Show Review View
 @csrf_exempt
 @login_required  
-def show_review(request, id):
-    product = get_object_or_404(Product, pk=id)
+def show_review(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     order = request.GET.get('order', 'newest')  # Ambil parameter 'order' dari query string
     
     # Urutkan review berdasarkan parameter 'order'
@@ -29,8 +29,8 @@ def show_review(request, id):
 # Add Review View
 @csrf_exempt
 @login_required  
-def add_review(request, id):
-    product = get_object_or_404(Product, pk=id)
+def add_review(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     form = ReviewEntryForm(request.POST or None)
 
     if request.method == "POST":

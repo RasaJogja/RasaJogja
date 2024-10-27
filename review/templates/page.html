@@ -87,7 +87,11 @@
             Add Review
         </a>
     </div>
+    <div class="text-center mt-6">
+        <a href="{% url 'bookmark:add_bookmark' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
+            Add Product to Bookmark
+        </a>
+    </div>
 </div>
 
 {% endblock content %}
-

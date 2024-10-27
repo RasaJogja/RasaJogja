@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from main.forms import RegistrationForm, CustomLoginForm
 
 def show_auth(request):
     context = {
@@ -18,20 +19,20 @@ def show_mainpage(request):
     return render(request, "mainpage.html", context)
 
 def register(request):
-    form = UserCreationForm()
-
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Your account has been successfully created!')
-            return redirect('main:login')
-    context = {'form':form}
-    return render(request, 'register.html', context)
+            user = form.save()
+            login(request, user)  # Log the user in after successful registration
+            return redirect('main:login')  # Redirect to a success page or home page
+    else:
+        form = RegistrationForm()
+    return render(request, 'register.html', {'form': form})
+
 
 def login_user(request):
    if request.method == 'POST':
-      form = AuthenticationForm(data=request.POST)
+      form = CustomLoginForm(data=request.POST)
 
       if form.is_valid():
             user = form.get_user()
@@ -39,7 +40,7 @@ def login_user(request):
             return redirect('main:show_mainpage')
 
    else:
-      form = AuthenticationForm(request)
+      form = CustomLoginForm(request)
    context = {'form': form}
    return render(request, 'login.html', context)
 

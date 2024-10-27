@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'main',
     'katalog',
     'chat',
+    'forum',
     'review',
+    'bookmark',
 ]
 
 MIDDLEWARE = [
@@ -109,8 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-# Mengubah zona waktu ke Jakarta
-TIME_ZONE = 'Asia/Jakarta'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

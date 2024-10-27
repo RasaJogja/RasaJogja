@@ -22,19 +22,6 @@
         margin-left: auto; /* Memusatkan divider */
         margin-right: auto; /* Memusatkan divider */
     }
-    .bookmark-btn {
-        background-color: transparent;
-        border: none;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.5rem;
-        color: rgb(0, 0, 0); 
-        cursor: pointer;
-        transition: color 0.3s ease;
-        z-index: 1; /* Ensure button is above other elements */
-        
-    }
 </style>
 {% endblock meta %}
 
@@ -43,9 +30,6 @@
 
 <div class="py-20 bg-white">
     <h1 class="text-4xl font-bold text-center mb-10">{{ product.nama }}'s Review</h1> 
-    <a href="{% url 'bookmark:handle_bookmark' product.pk %}" class="bookmark-btn">
-        <button class="bookmark-btn">Add to bookmark</button>
-    </a>
 
     <div class="divider"></div>  {# Garis pemisah di bawah judul #}
 
@@ -69,6 +53,11 @@
     <div class="text-center mt-8">  {# Pindahkan tombol ke sini #}
         <a href="{% url 'review:add_review' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
             Add Review
+        </a>
+    </div>
+    <div class="text-center mt-6">
+        <a href="{% url 'bookmark:handle_bookmark' product.pk %}" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
+            Add Product to Bookmark
         </a>
     </div>
 </div>

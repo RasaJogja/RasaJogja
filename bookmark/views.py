@@ -4,6 +4,8 @@ from .models import Product
 from .models import Bookmarks
 from katalog.models import Product
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
@@ -17,10 +19,10 @@ def handle_bookmark(reqest, product_id):
 
     if not created:
         bookmark.delete()
-        is_bookmarked = False
-    else:
-        is_bookmarked = True
-    return JsonResponse({'is_bookmarked': is_bookmarked})
+    #     is_bookmarked = False
+    # else:
+    #     is_bookmarked = True
+    return HttpResponseRedirect(reqest.META['HTTP_REFERER'])
 
 @csrf_exempt
 @login_required

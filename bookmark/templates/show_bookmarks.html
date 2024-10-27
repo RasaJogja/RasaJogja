@@ -1,31 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarked Products</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #3e2723;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4e342e;
+            padding: 20px;
+            background-color: #f7efe4;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #a1887f;
+            margin-top: 80px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 50px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fffdf9;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card {
+            background-color: #fdf8f4;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid #d7ccc8;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #a1887f;
+        }
+
+        .product-details {
+            padding: 20px;
+            background-color: #fff8f2;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #3e2723;
+            margin: 15px 0 5px;
+        }
+
+        .category, .price, .restaurant, .location {
+            color: #5d4037;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .btn-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: red;
+            font-size: 2.3rem;
+            line-height: 1;
+            border: 1;
+            cursor: pointer;
+            padding: 0 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+    </style>
 </head>
 <body>
     <h1>Bookmarked Products</h1>
 
-    {% if bookmarked_products %}
-        <ul>
+    <div class="product-grid">
+        {% if bookmarked_products %}
             {% for product in bookmarked_products %}
-                <li>
-                    <h2>{{ product.nama }}</h2>
-                    <p>Kategori: {{ product.kategori }}</p>
-                    <p>Harga: Rp {{ product.harga }}</p>
-                    <p>Restoran: {{ product.nama_restoran }}</p>
-                    <p>Lokasi: {{ product.lokasi }}</p>
-                    
+                <div class="product-card">
+                    <a href="{% url 'bookmark:handle_bookmark' product.pk %}" class="btn-remove" title="Remove Bookmark">&times;</a>
                     {% if product.url_gambar %}
-                        <img src="{{ product.url_gambar }}" alt="Gambar produk {{ product.nama }}" style="width:150px; height:auto;">
+                        <img src="{{ product.url_gambar }}" alt="Gambar produk {{ product.nama }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/250x200" alt="Gambar tidak tersedia">
                     {% endif %}
-                </li>
+                    <div class="product-details">
+                        <p class="product-name">{{ product.nama }}</p>
+                        <p class="category">Kategori: {{ product.kategori }}</p>
+                        <p class="price">Harga: IDR {{ product.harga }}</p>
+                        <p class="restaurant">Restoran: {{ product.nama_restoran }}</p>
+                        <p class="location">Lokasi: {{ product.lokasi }}</p>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>No bookmarked products found.</p>
-    {% endif %}
+        {% else %}
+            <p style="text-align: center; color: #8d6e63; font-size: 1.2rem;">No bookmarked products found.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
+{% endblock content %}

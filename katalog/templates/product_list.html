@@ -236,7 +236,6 @@
         <!-- Existing product card structure here -->
         {% for product in products %}
         <div class="product-card" data-category="{{ product.fields.kategori }}" data-price="{{ product.fields.harga }}">
-            <!-- <button class="bookmark-btn" id="bookmark-{{ product.pk }}"  -->
             <a href="{% url 'review:show_review' product.pk %}" class="product-link">
                 {% if product.fields.url_gambar %}
                     <img src="{{ product.fields.url_gambar }}" alt="Gambar {{ product.fields.nama }}">

@@ -29,8 +29,8 @@ def show_review(request, pk):
 # Add Review View
 @csrf_exempt
 @login_required  
-def add_review(request, id):
-    product = get_object_or_404(Product, pk=id)
+def add_review(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     form = ReviewEntryForm(request.POST or None)
 
     if request.method == "POST":

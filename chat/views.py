@@ -13,14 +13,15 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def create_chat(request):
+    # Jika yg login == user, tampilkan chat dengan seller saja
     if(request.user.profile.role == "user"):
         user_valid = User.objects.filter(profile__role='seller')
     else:
-        # If the current user is a seller, show users they have previously chatted with
+        # Jika yg login == seller, tampilkan chat dengan user yg sblmnya menghubungi seller
         existing_chats = Chat.objects.all()
         users_selected = set()
 
-        # Collect user IDs from chats the seller has participated in
+        # Simpan ID user yg pernah menghubungi seller
         for chat in existing_chats:
             chat_users_set = set(chat.users.all())
             if request.user in chat_users_set:
@@ -31,26 +32,24 @@ def create_chat(request):
 
 
 def handle_room(request, selected_user_id):
-    # Retrieve the selected user by ID
+    # Simpan user berdasarkan user.id yg sudah di-passed ke param
     selected_user = get_object_or_404(User, id=selected_user_id)
-
-    # Create a list of users that includes the selected user and the logged-in user
     all_users = [selected_user, request.user]
 
-    # Check if a chat with these users already exists
+    # Check apakah Chat antara selected_user dan request.user sebelumnya ada
     existing_chats = Chat.objects.filter(users__in=all_users).distinct()
     for chat in existing_chats:
-        # Compare the users in each chat with the required users
+        # Cari
         chat_users_set = set(chat.users.all())
         if chat_users_set == set(all_users):
             return redirect('chat:send_message', chat_id=chat.id)
 
-    # Create a new chat if no existing chat is found
+    # Buat instance Chat kalau sebelumnya belum ada
     chat = Chat.objects.create()
-    chat.users.set(all_users)  # Add the users to the chat
+    chat.users.set(all_users)  # Tambah users
     chat.save()
 
-    # Redirect to the newly created chat
+    # Redirect ke Chat baru
     return redirect('chat:send_message', chat_id=chat.id)
 
 def send_message(request, chat_id):
@@ -82,9 +81,9 @@ def send_message(request, chat_id):
     return render(request, 'chat_detail.html', {'form': form, 'chat': chat})
 
 def delete_message(request, message_id):
-    # Get mood berdasarkan id
+    # Get message berdasarkan id
     message = Message.objects.get(pk=message_id)
-    # Hapus mood
+    # Hapus message
     message.delete()
     # Kembali ke halaman awal
     return redirect('chat:send_message', message.chat.id)

@@ -25,4 +25,5 @@ urlpatterns = [
     path('forum/', include('forum.urls')),
     path('review/', include('review.urls')),
     path('bookmark/', include('bookmark.urls')),
+    path('auth/', include('authentication.urls')),
 ]

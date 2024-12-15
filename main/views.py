@@ -23,8 +23,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log the user in after successful registration
-            return redirect('main:login')  # Redirect to a success page or home page
+            login(request, user)
+            return redirect('main:login')  
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})

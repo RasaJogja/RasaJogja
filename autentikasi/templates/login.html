@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Login {{ user_type }}</title>
+<style>
+    .login {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;  /* Ukuran tombol lebih kecil */
+        font-size: 0.9em;    /* Ukuran font sedikit lebih kecil */
+        color: white;
+        background-color: #3498db; /* Warna latar belakang */
+        text-decoration: none;
+        border-radius: 5px; /* Menghasilkan sudut yang sedikit membulat */
+        transition: background-color 0.3s;
+        border: none; /* Menghilangkan border default */
+        margin: 5px 0; /* Jarak antar tombol */
+        width: auto; /* Mengatur lebar tombol menjadi sesuai dengan kontennya */
+    }
+
+    .btn:hover {
+        background-color: #2980b9; /* Warna saat hover */
+    }
+
+    table {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    ul {
+        color: red; /* Warna pesan kesalahan */
+        list-style-type: none; /* Menghilangkan bullet */
+        padding: 0; /* Menghilangkan padding */
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<div class="login">
+  <h1>Login</h1>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input class="btn login_btn" type="submit" value="Login as {{ user_type }}" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <p>Don't have an account yet?</p>
+  {% if user_type == 'User' %}
+    <a href="{% url 'autentikasi:register_user' %}" class="btn">Register as User</a>
+  {% else %}
+    <a href="{% url 'autentikasi:register_seller' %}" class="btn">Register as Seller</a>
+  {% endif %}
+
+  <h2>Or Login as:</h2>
+  <div class="login-options">
+    <a href="{% url 'autentikasi:login_user' %}" class="btn">Login as User</a>
+    <a href="{% url 'autentikasi:login_seller' %}" class="btn">Login as Seller</a>
+  </div>
+</div>
+{% endblock content %}
+
+

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-dj+gg6i-r#af6fux^=tb91fl9p$tscmnlw=-g7atl+4foms6b#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "clarissa-indriana-rasajogja.pbp.cs.ui.ac.id", "10.0.2.2"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "clarissa-indriana-rasajogja.pbp.cs.ui.ac.id", "10.0.2.2", "*"]
 
 
 # Application definition
@@ -120,6 +120,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:57850",
+    "http://localhost:51424",  # Gantilah dengan domain asal yang sesuai
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
@@ -127,7 +131,6 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

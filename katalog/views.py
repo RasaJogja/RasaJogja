@@ -1,10 +1,3 @@
-# from django.shortcuts import render
-# from .models import Product
-
-# def main_view(request):
-#     products = Product.objects.all()
-#     return render(request, 'main.html', {'products': products})
-
 import json
 from django.shortcuts import render
 from django.conf import settings

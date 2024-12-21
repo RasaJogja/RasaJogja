@@ -39,7 +39,6 @@ def add_bookmark(request, product_id):
     bookmark, created = Bookmarks.objects.get_or_create(user=user, product=product)
 
     if not created:
-        # Jika bookmark sudah ada, hapus
         bookmark.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
@@ -50,7 +49,6 @@ def bookmarked_products(request):
     bookmarked_products = [bookmark.product for bookmark in bookmarks]
 
     return render(request, 'show_bookmarks.html', {'bookmarked_products': bookmarked_products})
-
 
 def add_bookmark_flutter(request, product_id):
     if request.method == 'POST':

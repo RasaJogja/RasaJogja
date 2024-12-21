@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'chat',
     'forum',
     'review',
-    'bookmark',
     'authentication',
     'corsheaders',
 ]

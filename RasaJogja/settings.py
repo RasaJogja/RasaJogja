@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'katalog',
-    'chat',
+    'chat',  # Only one instance of chat should be here
     'forum',
     'review',
     'bookmark',
     'authentication',
     'corsheaders',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

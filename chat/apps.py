@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-
 class ChatConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
-    name = "chat"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'chat'
+    label = 'chat_app'  # Pastikan label ini unik

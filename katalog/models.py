@@ -1,12 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
+import uuid
+from main.models import Profile
 
-class Product(models.Model):
-    nama = models.CharField(max_length=200)
-    kategori = models.CharField(max_length=100)
-    harga = models.DecimalField(max_digits=10, decimal_places=2)
-    nama_restoran = models.CharField(max_length=200)
-    lokasi = models.CharField(max_length=300)
-    url_gambar = models.URLField(max_length=500, blank=True, null=True)  # Menambahkan field URL gambar
-
-    def __str__(self):
-        return self.nama
+# Create your models here.
+class Chat(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    users = models.ManyToManyField(User, related_name='chats')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+class Message(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)

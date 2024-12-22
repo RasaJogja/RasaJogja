@@ -1,10 +1,3 @@
-# from django.shortcuts import render
-# from .models import Product
-
-# def main_view(request):
-#     products = Product.objects.all()
-#     return render(request, 'main.html', {'products': products})
-
 import json
 from django.shortcuts import render
 from django.conf import settings
@@ -50,4 +43,8 @@ def get_products_json(request):
     
     # Mengembalikan data dalam format JSON
     print(Product.objects.all())
+<<<<<<< HEAD
     return JsonResponse({'products': products})
+=======
+    return JsonResponse({'products': products})
+>>>>>>> 2eccb3c1b1990831c87c62828750de587be47c3c

@@ -1,9 +1,7 @@
-
-from django.contrib import admin
 from django.urls import path
 from katalog.views import get_products_json, main_view
 
-app_name= 'katalog'
+app_name = 'katalog'
 
 urlpatterns = [
     path('main-view/', main_view, name='main_view'),

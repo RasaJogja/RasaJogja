@@ -1,0 +1,66 @@
+/* Navbar logo */
+nav img {
+    height: 40px; /* Tinggi logo */
+    margin-right: 10px; /* Jarak antara logo dan teks "Mental Health Tracker" */
+  }
+  
+  /* Navbar background color for all screen sizes */
+  nav {
+    background-color: #543310; /* Warna latar belakang */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Text styling */
+  nav h1 {
+    font-family: 'Poppins', sans-serif; /* Font family untuk heading */
+  }
+  
+  /* Links styling */
+  nav a {
+    text-transform: uppercase; /* Mengubah teks menjadi kapital */
+    letter-spacing: 1px; /* Spasi antar huruf */
+    transition: all 0.3s ease; /* Animasi smooth ketika hover */
+  }
+  
+  nav a:hover {
+    transform: translateY(-2px); /* Efek mengangkat ketika hover */
+  }
+  
+  /* Mobile menu button */
+  button.mobile-menu-button {
+    background-color: transparent; /* Menghapus background button di mobile */
+    border: none;
+    cursor: pointer;
+  }
+  
+  button.mobile-menu-button svg {
+    transition: transform 0.3s ease; /* Animasi smooth saat mengklik */
+  }
+  
+  button.mobile-menu-button:active svg {
+    transform: scale(0.95); /* Sedikit mengecilkan icon saat diklik */
+  }
+  
+  /* Mobile menu styling */
+  .mobile-menu {
+    background-color: #543310; /* Background untuk mobile menu */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Garis atas */
+  }
+  
+  .mobile-menu a {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+  
+  /* Responsive tweaks */
+  @media (min-width: 768px) {
+    nav h1 {
+      margin-left: 20px; /* Menambahkan margin di kiri untuk layar besar */
+    }
+    .mobile-menu {
+      display: none; /* Sembunyikan mobile menu di layar besar */
+    }
+  }
+  

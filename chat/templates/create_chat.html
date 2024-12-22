@@ -101,14 +101,14 @@
 
             <div id="dashboard-content" class="tab-content hidden">
                 <div class="space-y-4" id="dashboard-user-list">  <!-- New ID for dashboard user list -->
-                    <!-- User list will be populated here when Alphabet tab is clicked -->
+                    <!-- User terurut akan ditampilkan -->
                 </div>
             </div>
             {% comment %} <div id="settings-content" class="tab-content hidden">
-                <!-- Your settings content here -->
+         
             </div>
             <div id="contact-content" class="tab-content hidden">
-                <!-- Your contact content here -->
+        
             </div> {% endcomment %}
         </div>
     </div>
@@ -119,50 +119,50 @@
         const tabs = document.querySelectorAll('.tab-link');
         const contents = document.querySelectorAll('.tab-content');
 
-        // Store users in a variable when the profile content is loaded
+        // Menyimpan users di variable saat di-load
         const userElements = Array.from(document.querySelectorAll('.user-item'));
         
-        // Function to show the content corresponding to the selected tab
+        // Show content berdasarkan tab yg dipilih
         const showContent = (targetId) => {
             contents.forEach(content => {
-                content.classList.add('hidden'); // Hide all content
+                content.classList.add('hidden'); // Hide 
             });
-            document.getElementById(targetId).classList.remove('hidden'); // Show the selected content
+            document.getElementById(targetId).classList.remove('hidden'); // Show
         };
 
-        // Function to sort users alphabetically and show in dashboard content
+        // Mengurutkan berdasarkan alphabet
         const sortUsersAlphabetically = () => {
-            const dashboardUserList = document.getElementById('dashboard-user-list');
+            const dashboardUserList = document.getElementById('dashboard-user-list'); // Ambil dari ID tsb
             const sortedUsers = userElements.sort((a, b) => {
                 const usernameA = a.querySelector('.username').textContent.toLowerCase();
                 const usernameB = b.querySelector('.username').textContent.toLowerCase();
                 return usernameA.localeCompare(usernameB);
             });
 
-            // Clear the existing dashboard user list
+            // Clear container dashbord user list
             dashboardUserList.innerHTML = '';
 
-            // Append sorted users to the dashboard content
+            // Tambahkan ke dashbord user list
             sortedUsers.forEach(user => {
-                dashboardUserList.appendChild(user.cloneNode(true)); // Clone to keep original in profile content
+                dashboardUserList.appendChild(user.cloneNode(true));
             });
         };
 
-        // Attach click event to each tab link
+        // Tambahkan click event
         tabs.forEach(tab => {
             tab.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent the default anchor behavior
+                event.preventDefault(); // 
                 const targetId = tab.getAttribute('data-target');
-                showContent(targetId); // Show the corresponding content
+                showContent(targetId); // Show content berdasarkan tab
 
-                // Sort users and show them in the dashboard when "Alphabet" tab is clicked
+                // Sort kalau id nya dashboard-content
                 if (targetId === 'dashboard-content') {
                     sortUsersAlphabetically();
                 }
             });
         });
-
-        // Show profile content by default on page load
+        
+        // Default
         showContent('profile-content');
     });
 </script>

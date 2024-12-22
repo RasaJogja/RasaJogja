@@ -90,7 +90,7 @@ def remove_bookmark_flutter(request, product_id):
 def bookmarked_products_flutter(request):
     if request.method == 'GET':
         # Hardcoded user for development
-        user_id = request.user.pk
+        user_id = request.user.id
         # Mendapatkan semua bookmark untuk user saat ini
         bookmarks = Bookmarks.objects.filter(user_id=user_id)
         

@@ -10,6 +10,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
 def create_chat(request):
+    # Jika yg login == user, tampilkan chat dengan seller saja
     if(request.user.profile.role == "user"):
         user_valid = User.objects.filter(profile__role='seller')
     else:

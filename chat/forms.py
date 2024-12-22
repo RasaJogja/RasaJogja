@@ -4,6 +4,7 @@ from django import forms
 from main.models import Profile
 from django.contrib.auth.models import User
 
+# Tidak jadi digunakan karena proses pemilihan ada di HTML
 class ChatForm(ModelForm):
     class Meta:
         model = Chat
@@ -15,20 +16,20 @@ class ChatForm(ModelForm):
         }
     
     def __init__(self, *args, **kwargs):
-        current_user = kwargs.pop('current_user', None)  # Get the current user from kwargs
+        current_user = kwargs.pop('current_user', None)  # Get current user dari kwargs
         super(ChatForm, self).__init__(*args, **kwargs)
         
-        # Exclude the current user from the users queryset
+        # Exclude current user
         self.fields['users'].queryset = User.objects.exclude(id=current_user.id)
         
         if(current_user.profile.role == "user"):
             self.fields['users'].queryset = User.objects.filter(profile__role='seller')
         else:
-            # If the current user is a seller, show users they have previously chatted with
+            # Kalo current_user == seller, tampilkan user yg pernah menghubungi
             existing_chats = Chat.objects.all()
             users_selected = set()
 
-            # Collect user IDs from chats the seller has participated in
+            # Ambil id dari users yg sebelumnya menghubungi seller
             for chat in existing_chats:
                 chat_users_set = set(chat.users.all())
                 if current_user in chat_users_set:

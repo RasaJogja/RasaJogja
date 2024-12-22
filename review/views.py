@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from review.models import ReviewEntry
 from katalog.models import Product
+from django.core import serializers
 from review.forms import ReviewEntryForm
 from django.views.decorators.csrf import csrf_exempt
 
@@ -56,3 +57,7 @@ def add_review(request, pk):
         'product': product
     }
     return render(request, "add_review.html", context)
+
+def show_json_review(request):
+    data = ReviewEntry.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")

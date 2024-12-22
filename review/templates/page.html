@@ -68,18 +68,26 @@
     <!-- Container untuk review -->
     <div class="max-w-3xl mx-auto bg-white shadow-lg p-6 rounded-lg">
         {% for review in reviews %}
-            <div class="border-b border-gray-300 py-6 flex space-x-4">
-                <div class="flex-1">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-lg font-semibold">{{ review.user.username }}</h2> 
-                        <span class="text-sm text-gray-500">{{ review.time|date:"F j, Y, g:i a" }}</span>
-                    </div>
-                    <p class="mt-2 text-gray-700">{{ review.review_text }}</p>
+        <div class="border-b border-gray-300 py-6 flex space-x-4">
+            <div class="flex-1">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold">{{ review.user.username }}</h2>
+                    <span class="text-sm text-gray-500">{{ review.time|date:"F j, Y, g:i a" }}</span>
                 </div>
+                <p class="mt-2 text-gray-700">{{ review.review_text }}</p>
+                <div class="mt-4 flex justify-end">
+                    <form method="post" action="{% url 'review:delete_review' review.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-add-review px-4 py-2 rounded-md transition duration-300">
+                            Delete
+                        </button>
+                    </form>
+                    </div>
             </div>
+        </div>
         {% empty %}
             <p class="text-gray-600 text-center">Belum ada ulasan untuk produk ini.</p>
-        {% endfor %}
+        {% endfor %}        
     </div>
 
     <div class="flex justify-center space-x-4 mt-8">

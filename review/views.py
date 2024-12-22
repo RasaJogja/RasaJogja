@@ -6,6 +6,8 @@ from review.models import ReviewEntry
 from katalog.models import Product
 from review.forms import ReviewEntryForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.http import HttpResponseForbidden
 
 # Show Review View
 @csrf_exempt
@@ -57,6 +59,17 @@ def add_review(request, pk):
         'product': product
     }
     return render(request, "add_review.html", context)
+
+
+@login_required
+def delete_review(request, pk):
+    review = get_object_or_404(ReviewEntry, pk=pk)
+
+    if request.method == 'POST':
+        review.delete()
+        return redirect('review:show_review', pk=review.product.pk)
+    return redirect('review:show_review', pk=review.product.pk)
+
 
 @csrf_exempt
 def get_product_reviews_json(request, pk):
@@ -120,3 +133,24 @@ def add_review_json(request, pk):
         'status': 'error',
         'message': 'Invalid request method'
     }, status=405)
+
+@csrf_exempt
+def delete_review_json(request, pk):
+    try:
+        if request.method == 'DELETE':
+            review = get_object_or_404(ReviewEntry, pk=pk)
+            review.delete()
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Review berhasil dihapus.'
+            })
+        else:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Invalid request method.'
+            }, status=405)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=400)

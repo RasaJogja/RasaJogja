@@ -189,3 +189,14 @@ def get_messages_flutter(request, chat_id):
 
     except Chat.DoesNotExist:
         return JsonResponse({'error': 'Chat not found'}, status=404)
+
+@csrf_exempt
+def delete_message_flutter(request, message_id):
+    if request.method == 'DELETE':
+        try:
+            message = Message.objects.get(id=message_id)
+            message.delete()
+            return JsonResponse({'status': 'success'})
+        except Message.DoesNotExist:
+            return JsonResponse({'error': 'Message not found'}, status=404)
+    return JsonResponse({'error': 'Method not allowed'}, status=405)

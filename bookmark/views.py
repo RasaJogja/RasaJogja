@@ -50,12 +50,13 @@ def bookmarked_products(request):
 
     return render(request, 'show_bookmarks.html', {'bookmarked_products': bookmarked_products})
 
+@csrf_exempt
 def add_bookmark_flutter(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
         
         # Hardcoded user for development
-        user_id = request.POST.get('user_id', 1)  # Default to user ID 1 if not provided
+        user_id = request.user.id # Default to user ID 1 if not provided
         
         # Menambahkan bookmark
         bookmark, created = Bookmarks.objects.get_or_create(user_id=user_id, product=product)
@@ -73,7 +74,7 @@ def remove_bookmark_flutter(request, product_id):
         product = get_object_or_404(Product, id=product_id)
         
         # Hardcoded user for development
-        user_id = request.POST.get('user_id', 1)  # Default to user ID 1 if not provided
+        user_id = request.user.id # Default to user ID 1 if not provided
 
         # Menghapus bookmark jika ada
         bookmark = Bookmarks.objects.filter(user_id=user_id, product=product).first()
@@ -85,18 +86,18 @@ def remove_bookmark_flutter(request, product_id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)
 
+@csrf_exempt
 def bookmarked_products_flutter(request):
     if request.method == 'GET':
         # Hardcoded user for development
-        user_id = request.user.id  # Default to user ID 1 if not provided
-
+        user_id = request.user.id
         # Mendapatkan semua bookmark untuk user saat ini
         bookmarks = Bookmarks.objects.filter(user_id=user_id)
         
         # Membentuk data produk yang di-bookmark
         bookmarked_products = [
             {
-                'id': bookmark.product.id,
+                'id': bookmark.product.pk,
                 'nama': bookmark.product.nama,
                 'kategori': bookmark.product.kategori,
                 'harga': str(bookmark.product.harga),  # Konversi Decimal ke string untuk JSON

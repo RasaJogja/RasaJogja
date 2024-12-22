@@ -7,71 +7,31 @@ from main.models import Profile
 
 @csrf_exempt
 def login(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            username = data['username']
-            password = data['password']
-
-            # Add print statements for debugging
-            print(f"Attempting login for username: {username}")
-
-            user = authenticate(username=username, password=password)
-            
-            # Add print statement to check user authentication result
-            print(f"Authentication result: {user}")
-            
-            if user is None:
-                return JsonResponse({
-                    "status": False,
-                    "message": "Invalid username or password."
-                }, status=401)
-
-            if not user.is_active:
-                return JsonResponse({
-                    "status": False,
-                    "message": "Account is disabled."
-                }, status=401)
-
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
             auth_login(request, user)
-            
-            profile = Profile.objects.get(user=user)
-
+            # Status login sukses.
             return JsonResponse({
                 "username": user.username,
-                "phone_number": profile.phone_number,
-                "role": profile.role,
-                "status": "success",
-                "message": "Login successful!"
+                "status": True,
+                "message": "Login sukses!"
+                # Tambahkan data lainnya jika ingin mengirim data ke Flutter.
             }, status=200)
+        else:
+            return JsonResponse({
+                "status": False,
+                "message": "Login gagal, akun dinonaktifkan."
+            }, status=401)
 
-        except KeyError as e:
-            print(f"KeyError: {str(e)}")
-            return JsonResponse({
-                "status": False,
-                "message": f"Missing required field: {str(e)}"
-            }, status=400)
-            
-        except Profile.DoesNotExist:
-            print(f"Profile.DoesNotExist for user: {username}")
-            return JsonResponse({
-                "status": False,
-                "message": "User profile not found."
-            }, status=404)
-            
-        except Exception as e:
-            # Add detailed error logging
-            print(f"Unexpected error during login: {str(e)}")
-            print(f"Error type: {type(e)}")
-            import traceback
-            print(f"Traceback: {traceback.format_exc()}")
-            
-            return JsonResponse({
-                "status": False,
-                "message": f"An error occurred during login: {str(e)}"
-            }, status=500)
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Login gagal, periksa kembali email atau kata sandi."
+        }, status=401)
 
-    
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -88,13 +48,13 @@ def register(request):
                     "status": False,
                     "message": "Passwords do not match."
                 }, status=400)
-            
+
             if User.objects.filter(username=username).exists():
                 return JsonResponse({
                     "status": False,
                     "message": "Username already exists."
                 }, status=400)
-            
+
             valid_roles = ['user', 'seller']
             if role not in valid_roles:
                 return JsonResponse({
@@ -103,13 +63,13 @@ def register(request):
                 }, status=400)
 
             user = User.objects.create_user(username=username, password=password1)
-            
+
             profile = Profile.objects.create(
                 user=user,
                 phone_number=phone_number,
                 role=role
             )
-            
+
             return JsonResponse({
                 "username": user.username,
                 "phone_number": profile.phone_number,
@@ -123,13 +83,13 @@ def register(request):
                 "status": False,
                 "message": f"Missing required field: {str(e)}"
             }, status=400)
-        
+
         except Exception as e:
             return JsonResponse({
                 "status": False,
                 "message": "An error occurred during registration."
             }, status=500)
-    
+
     else:
         return JsonResponse({
             "status": False,

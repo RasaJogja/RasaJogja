@@ -1,19 +1,19 @@
-from django.shortcuts import render, redirect, get_object_or_404 
+import json
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from review.models import ReviewEntry
 from katalog.models import Product
-from django.core import serializers
 from review.forms import ReviewEntryForm
 from django.views.decorators.csrf import csrf_exempt
 
 # Show Review View
 @csrf_exempt
-@login_required  
+@login_required
 def show_review(request, pk):
     product = get_object_or_404(Product, pk=pk)
     order = request.GET.get('order', 'newest')  # Ambil parameter 'order' dari query string
-    
+
     # Urutkan review berdasarkan parameter 'order'
     if order == 'oldest':
         reviews = ReviewEntry.objects.filter(product=product).select_related('user').order_by('time')
@@ -29,7 +29,7 @@ def show_review(request, pk):
 
 # Add Review View
 @csrf_exempt
-@login_required  
+@login_required
 def add_review(request, pk):
     product = get_object_or_404(Product, pk=pk)
     form = ReviewEntryForm(request.POST or None)
@@ -58,6 +58,65 @@ def add_review(request, pk):
     }
     return render(request, "add_review.html", context)
 
-def show_json_review(request):
-    data = ReviewEntry.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+@csrf_exempt
+def get_product_reviews_json(request, pk):
+    try:
+        product = get_object_or_404(Product, pk=pk)
+        order = request.GET.get('order', 'newest')
+
+        if order == 'oldest':
+            reviews = ReviewEntry.objects.filter(product=product).order_by('time')
+        else:
+            reviews = ReviewEntry.objects.filter(product=product).order_by('-time')
+
+        reviews_data = [{
+            'id': review.id,
+            'username': review.user.username,
+            'review_text': review.review_text,
+            'time': review.time.strftime("%Y-%m-%d %H:%M:%S"),
+        } for review in reviews]
+
+        return JsonResponse({
+            'status': 'success',
+            'product_id': pk,
+            'reviews': reviews_data
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=400)
+
+@csrf_exempt
+def add_review_json(request, pk):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+
+            product = get_object_or_404(Product, pk=pk)
+
+            review = ReviewEntry.objects.create(
+                user=request.user,
+                product=product,
+                review_text=data.get('review_text', '').replace('\r', '\n'),
+            )
+
+            return JsonResponse({
+                'status': 'success',
+                'review': {
+                    'id': review.id,
+                    'username': review.user.username,
+                    'review_text': review.review_text,
+                    'time': review.time.strftime("%Y-%m-%d %H:%M:%S"),
+                }
+            })
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': str(e)
+            }, status=400)
+
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Invalid request method'
+    }, status=405)

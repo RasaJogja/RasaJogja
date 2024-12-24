@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 import json
 from main.models import Profile
 
-@csrf_exempt
+
 def login(request):
     if request.method == 'POST':
         try:
@@ -73,7 +73,7 @@ def login(request):
             }, status=500)
 
     
-@csrf_exempt
+
 def register(request):
     if request.method == 'POST':
         try:
@@ -137,7 +137,7 @@ def register(request):
             "message": "Invalid request method."
         }, status=405)
 
-@csrf_exempt
+
 def register(request):
     if request.method == 'POST':
         try:
@@ -201,7 +201,7 @@ def register(request):
             "message": "Invalid request method."
         }, status=405)
     
-@csrf_exempt
+
 def logout(request):
     username = request.user.username
 

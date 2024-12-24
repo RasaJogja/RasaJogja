@@ -105,7 +105,7 @@ def create_chat_flutter(request):
 
     return JsonResponse(response_data)
 
-@csrf_exempt
+
 def handle_room_flutter(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -129,7 +129,7 @@ def handle_room_flutter(request):
     else:
         return JsonResponse({"status": "error", "chat_id": "gagal"}, status=401)
 
-@csrf_exempt
+
 def send_message_flutter(request):
     if request.method == 'POST':
         try:
@@ -165,7 +165,7 @@ def send_message_flutter(request):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
-@csrf_exempt
+
 def get_messages_flutter(request, chat_id):
     try:
         chat = Chat.objects.get(pk=chat_id)
@@ -190,7 +190,7 @@ def get_messages_flutter(request, chat_id):
     except Chat.DoesNotExist:
         return JsonResponse({'error': 'Chat not found'}, status=404)
 
-@csrf_exempt
+
 def delete_message_flutter(request, message_id):
     if request.method == 'DELETE':
         try:

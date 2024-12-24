@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.http import HttpResponseForbidden
 
 # Show Review View
-@csrf_exempt
+
 @login_required
 def show_review(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -30,7 +30,7 @@ def show_review(request, pk):
     return render(request, "page.html", context)
 
 # Add Review View
-@csrf_exempt
+
 @login_required
 def add_review(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -71,7 +71,7 @@ def delete_review(request, pk):
     return redirect('review:show_review', pk=review.product.pk)
 
 
-@csrf_exempt
+
 def get_product_reviews_json(request, pk):
     try:
         product = get_object_or_404(Product, pk=pk)
@@ -100,7 +100,7 @@ def get_product_reviews_json(request, pk):
             'message': str(e)
         }, status=400)
 
-@csrf_exempt
+
 def add_review_json(request, pk):
     if request.method == 'POST':
         try:
@@ -134,7 +134,7 @@ def add_review_json(request, pk):
         'message': 'Invalid request method'
     }, status=405)
 
-@csrf_exempt
+
 def delete_review_json(request, pk):
     try:
         if request.method == 'DELETE':

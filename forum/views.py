@@ -104,7 +104,7 @@ def show_json_comment_forum(request, forum_id):
 
     return JsonResponse({'comment': comments_data})
 
-@csrf_exempt
+
 def delete_forum_flutter(request, forum_id):
     if request.method == 'POST':
         try:
@@ -127,7 +127,7 @@ def delete_forum_flutter(request, forum_id):
         return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt  
+  
 def create_forum_flutter(request):
     if request.method == 'POST':
         # Parse the JSON body
@@ -143,7 +143,7 @@ def create_forum_flutter(request):
     else:
         return JsonResponse({"status": "error"}, status=401)
 
-@csrf_exempt  # Only for development. Remove in production.
+  # Only for development. Remove in production.
 def add_comment_flutter(request, forum_id):
     if request.method == 'POST':
         try:

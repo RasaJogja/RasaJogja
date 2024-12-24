@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from .models import Product, Bookmarks
 from datetime import datetime
 
-@csrf_exempt
+
 @login_required
 def remove_bookmark(request, product_id):
     if request.method == 'POST':
@@ -30,7 +30,7 @@ def remove_bookmark(request, product_id):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
     
-@csrf_exempt
+
 @login_required
 def add_bookmark(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -42,7 +42,7 @@ def add_bookmark(request, product_id):
         bookmark.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
-@csrf_exempt
+
 @login_required
 def bookmarked_products(request):
     bookmarks = Bookmarks.objects.filter(user=request.user)
@@ -50,7 +50,7 @@ def bookmarked_products(request):
 
     return render(request, 'show_bookmarks.html', {'bookmarked_products': bookmarked_products})
 
-@csrf_exempt
+
 def add_bookmark_flutter(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
@@ -68,7 +68,7 @@ def add_bookmark_flutter(request, product_id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)
 
-@csrf_exempt
+
 def remove_bookmark_flutter(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
@@ -86,7 +86,7 @@ def remove_bookmark_flutter(request, product_id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)
 
-@csrf_exempt
+
 def bookmarked_products_flutter(request):
     if request.method == 'GET':
         # Hardcoded user for development

@@ -22,7 +22,7 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save() #register
             login(request, user)
             return redirect('main:login')  
     else:

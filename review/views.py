@@ -103,58 +103,36 @@ def get_product_reviews_json(request, pk):
 @csrf_exempt
 def add_review_json(request, pk):
     if request.method == 'POST':
-        print("Received data:", request.body.decode('utf-8'))
         try:
             data = json.loads(request.body)
-            print("Parsed JSON:", data)
-            
-            # Add error checking for product
-            try:
-                product = get_object_or_404(Product, pk=pk)
-                print(f"Found product: {product}")
-            except:
-                print(f"Product with id {pk} not found")
-                return JsonResponse({
-                    'status': 'error',
-                    'message': f'Product with id {pk} not found'
-                }, status=404)
 
-            # Try creating the review
-            try:
-                review = ReviewEntry.objects.create(
-                    user=request.user if request.user.is_authenticated else None,
-                    product=product,
-                    review_text=data.get('review_text', '')
-                )
-                print(f"Created review: {review}")
-            except Exception as e:
-                print(f"Error creating review: {str(e)}")
-                return JsonResponse({
-                    'status': 'error',
-                    'message': f'Error creating review: {str(e)}'
-                }, status=400)
+            product = get_object_or_404(Product, pk=pk)
+
+            review = ReviewEntry.objects.create(
+                user=request.user,
+                product=product,
+                review_text=data.get('review_text', '').replace('\r', '\n'),
+            )
 
             return JsonResponse({
                 'status': 'success',
                 'review': {
                     'id': review.id,
+                    'username': review.user.username,
                     'review_text': review.review_text,
                     'time': review.time.strftime("%Y-%m-%d %H:%M:%S"),
                 }
             })
-        except json.JSONDecodeError as e:
-            print(f"JSON decode error: {str(e)}")
-            return JsonResponse({
-                'status': 'error',
-                'message': f'Invalid JSON: {str(e)}'
-            }, status=400)
         except Exception as e:
-            print(f"Unexpected error: {str(e)}")
             return JsonResponse({
                 'status': 'error',
                 'message': str(e)
             }, status=400)
 
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Invalid request method'
+    }, status=405)
 
 @csrf_exempt
 def delete_review_json(request, pk):
